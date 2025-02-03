@@ -30,9 +30,11 @@ public class WaveSpawn : MonoBehaviour
     int ObjectiveRandomizer = 0;
     ObjectiveSpawn OS;
     UI ui;
+    XP xp;
 
     void Start()
     {
+        xp = GameObject.FindGameObjectWithTag("XPHolder").GetComponent<XP>();
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         OS = GetComponent<ObjectiveSpawn>();
         WinUI.SetActive(false);
@@ -63,6 +65,7 @@ public class WaveSpawn : MonoBehaviour
                 isWaveBeat = true;
                 enableSpawn = true;              
                 totalSpawnCount = 0;
+                xp.AddXP(300);
             }
             if (totalSpawnCount == ObjectiveRandomizer)
             {
