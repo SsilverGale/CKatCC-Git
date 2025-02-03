@@ -29,9 +29,11 @@ public class WaveSpawn : MonoBehaviour
     int BossEnemyTag;
     int ObjectiveRandomizer = 0;
     ObjectiveSpawn OS;
+    UI ui;
 
     void Start()
     {
+        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         OS = GetComponent<ObjectiveSpawn>();
         WinUI.SetActive(false);
     }
@@ -54,6 +56,7 @@ public class WaveSpawn : MonoBehaviour
             if (enemyCount == 0)
             {
                 waveCount++;
+                ui.UpdateWaveCount(waveCount);
                 ObjectiveRandomizer = Random.Range(0, (int)(enemyCount - Mathf.Round((float)(enemyCount * 0.6f))));
                 maxEnemyCount = (int)(maxEnemyCount * 1.2f);
                 SpawnCount = 0;
