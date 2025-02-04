@@ -1,3 +1,0 @@
-repository "CKatCC@GrimbleGrombleStudios@cloud"
-  path "/"
-    smartbranch "/main/Steamworks Coding"
