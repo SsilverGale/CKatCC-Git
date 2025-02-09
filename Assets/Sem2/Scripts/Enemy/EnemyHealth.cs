@@ -11,9 +11,14 @@ public class EnemyHealth : MonoBehaviour
     bool enablePoison = false;
     float captureTime = 0;
     bool enableFire = false;
+    XP xp;
 
+    void Start()
+    {
+        xp = GameObject.FindGameObjectWithTag("XPHolder").GetComponent<XP>();
+    }
 
-     void Update()
+    void Update()
     {
         if (enablePoison && (Time.time - captureTime) <= 6)
         {
@@ -30,6 +35,7 @@ public class EnemyHealth : MonoBehaviour
         if (hp < 0) 
         {
             GameObject.FindGameObjectWithTag("WaveSpawn").GetComponent<WaveSpawn>().DecreaseEnemyCount();
+            xp.AddXP(15);
             Destroy(gameObject);
         }
     }

@@ -9,8 +9,9 @@ public class UI : MonoBehaviour
     [SerializeField] Texture2D Relish;
     [SerializeField] Texture2D Mustard;
     [SerializeField] GameObject Holder;
-    [SerializeField] Text text;
+    [SerializeField] Text Ammotext;
     [SerializeField] Slider slider;
+    [SerializeField] Text waveCountText;
     PlayerHealth hp;
 
     string Class;
@@ -68,10 +69,10 @@ public class UI : MonoBehaviour
 
         if (isClick)
         {
-            text.text = "Ammo: " + currentAmmo.ToString() + "/" + maxAmmo.ToString();
+            Ammotext.text = "Ammo: " + currentAmmo.ToString() + "/" + maxAmmo.ToString();
             if (Class.Equals("Relish"))
             {
-                text.text = "Ammo: " + "-/-";
+                Ammotext.text = "Ammo: " + "-/-";
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -141,6 +142,11 @@ public class UI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.75f);
         MustardReload = true;
+    }
+
+    public void UpdateWaveCount(int wave)
+    {
+        waveCountText.text = "Wave: " + wave;
     }
 
 }
