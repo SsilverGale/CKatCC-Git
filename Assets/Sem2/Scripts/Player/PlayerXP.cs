@@ -7,7 +7,7 @@ public class PlayerXP : MonoBehaviour
     int playerXP;
     XP xp;
 
-     void Start()
+    void Start()
     {
         xp = GameObject.FindGameObjectWithTag("XPHolder").GetComponent<XP>();
     }
@@ -15,5 +15,15 @@ public class PlayerXP : MonoBehaviour
     public void FetchXP()
     {
         xp.GetXP();
+    }
+
+    public int GetPlayerXP()
+    {
+    return playerXP;
+    }
+
+    public void IncrementXP(int input)
+    {
+        playerXP += input;
     }
 }
