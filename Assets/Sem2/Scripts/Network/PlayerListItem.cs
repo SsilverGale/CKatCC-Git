@@ -12,16 +12,28 @@ public class PlayerListItem : MonoBehaviour
     private bool AvatarReceived;
 
     public Text PlayerNameText;
+    public Text PlayerReadyText;
     public RawImage PlayerIcon;
+    public bool Ready;
 
     protected Callback<AvatarImageLoaded_t> ImageLoaded;
 
+    public void ChangeReadyStatus(){
+        if (Ready){
+            PlayerReadyText.text = "Ready";
+            PlayerReadyText.color = Color.green;
+        } else {
+            PlayerReadyText.text = "Not Ready";
+            PlayerReadyText.color = Color.red;
+        }
+    }
     private void Start()
     {
         ImageLoaded = Callback<AvatarImageLoaded_t>.Create(OnImageLoaded);
     }
     public void SetPlayerValues()
     {
+        ChangeReadyStatus();
         PlayerNameText.text = PlayerName;
         if (!AvatarReceived) {GetPlayerIcon();}
 

@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 906629048}
   - component: {fileID: 906629047}
   - component: {fileID: 906629046}
+  - component: {fileID: 906629051}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -550,12 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea368fb6f27ec2f40a40e20977992b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Channels: 0200000001000000
-  Timeout: 25
-  SteamAppID: 480
-  AllowSteamRelay: 1
-  UseNextGenSteamNetworking: 1
-  SteamUserID: 0
 --- !u!114 &906629049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +571,7 @@ MonoBehaviour:
   offlineScene: Assets/Sem2/Scenes/MainMenu.unity
   onlineScene: Assets/Sem2/Scenes/LobbyScene.unity
   offlineSceneLoadDelay: 0
-  transport: {fileID: 0}
+  transport: {fileID: 906629051}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
@@ -618,6 +613,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &906629051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906629045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  RecvBufferSize: 7361536
+  SendBufferSize: 7361536
+  FastResend: 2
+  ReceiveWindowSize: 4096
+  SendWindowSize: 4096
+  MaxRetransmit: 40
+  MaximizeSocketBuffers: 1
+  ReliableMaxMessageSize: 297433
+  UnreliableMaxMessageSize: 1194
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
 --- !u!1 &943748584
 GameObject:
   m_ObjectHideFlags: 0
