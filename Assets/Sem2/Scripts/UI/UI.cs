@@ -37,18 +37,14 @@ public class UI : MonoBehaviour
     {
         if (hp == null)
         {
-            try{
-                hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-            } catch{
+                hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();           
+        }
+        if (isClick) 
+        {
+            slider.value = hp.getHp() / 100;
+        }
+            
 
-            }
-            
-        }
-        try{
-            slider.value =  hp.getHp()/100;
-        } catch {
-            
-        }
 
         if (Input.GetMouseButtonDown(0))
         {

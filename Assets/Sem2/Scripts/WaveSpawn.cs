@@ -13,21 +13,20 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField] GameObject BurgerBossEnemy;
     [SerializeField] GameObject HotdogBossEnemy;
     [SerializeField] GameObject PopcornBossEnemy;
-    bool isWaveBeat = true;
-    [SerializeField] int enemyCount = 0;
+    bool isWaveBeat;
+    [SerializeField] int enemyCount = 1;
     [SerializeField] int waveCount = 0;
     [SerializeField] bool enableSpawn = false;
     bool isClick = false;
-    int spawnPointcount = 0;
+    [SerializeField] int spawnPointcount = 0;
     bool waitForDelay = false;
-    int maxEnemyCount = 20;
+    [SerializeField] int maxEnemyCount = 20;
     int SpawnCount = 0;
     [SerializeField] GameObject WinUI;
     bool empowerEnemy = false;
     bool enableEmpower = false;
-    int totalSpawnCount = 0;
-    int BossEnemyTag;
-    int ObjectiveRandomizer = 0;
+    [SerializeField] int BossEnemyTag;
+    [SerializeField] int ObjectiveRandomizer = 0;
     ObjectiveSpawn OS;
     UI ui;
     XP xp;
@@ -38,15 +37,12 @@ public class WaveSpawn : MonoBehaviour
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         OS = GetComponent<ObjectiveSpawn>();
         WinUI.SetActive(false);
+        isWaveBeat = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Invoke("enableIsClick", 1);
-        }
         if (isClick) 
         {
             //for review 1
@@ -55,7 +51,7 @@ public class WaveSpawn : MonoBehaviour
                 WinUI.SetActive(true);
                 enemyCount = 1;
             }
-            if (enemyCount == 0)
+            if (enemyCount <= 0 && !isWaveBeat)
             {
                 waveCount++;
                 ui.UpdateWaveCount(waveCount);
@@ -64,16 +60,16 @@ public class WaveSpawn : MonoBehaviour
                 SpawnCount = 0;
                 isWaveBeat = true;
                 enableSpawn = true;              
-                totalSpawnCount = 0;
-                xp.AddXP(300);
+  
+                //xp.AddXP(300);
             }
-            if (totalSpawnCount == ObjectiveRandomizer)
+            if (SpawnCount == ObjectiveRandomizer)
             {
                 OS.NewObjective();
             }
             if (enableEmpower) 
             {
-                if (totalSpawnCount == BossEnemyTag)
+                if (SpawnCount == BossEnemyTag)
                 {
                     empowerEnemy = true;
                     enableEmpower = false;
@@ -126,7 +122,6 @@ public class WaveSpawn : MonoBehaviour
                             }
                             SpawnCount++;
                             enemyCount++;
-                            totalSpawnCount++;
                             StartCoroutine(enemySpawnCooldown());
                     }              
             }
@@ -146,7 +141,7 @@ public class WaveSpawn : MonoBehaviour
     }
 
 
-    void enableIsClick()
+    public void enableIsClick()
     {
         isClick = true;
     }
