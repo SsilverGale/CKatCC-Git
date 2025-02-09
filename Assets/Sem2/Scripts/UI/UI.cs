@@ -43,13 +43,7 @@ public class UI : MonoBehaviour
         {
             slider.value = hp.getHp() / 100;
         }
-            
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Invoke("enableIsclick", 2f);
-        }
+           
         if (MustardCount >= (maxAmmo - currentAmmo))
         {
             MustardReload = false;
@@ -129,7 +123,7 @@ public class UI : MonoBehaviour
         return currentAmmo;
     }
 
-    void enableIsclick()
+    public void enableIsclick()
     {
         isClick = true;
     }

@@ -8677,7 +8677,11 @@ MonoBehaviour:
   enemyCount: 0
   waveCount: 0
   enableSpawn: 0
+  spawnPointcount: 0
+  maxEnemyCount: 20
   WinUI: {fileID: 1015536296}
+  BossEnemyTag: 0
+  ObjectiveRandomizer: 0
 --- !u!4 &1128660303
 Transform:
   m_ObjectHideFlags: 0
@@ -9797,6 +9801,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1128660302}
         m_TargetAssemblyTypeName: WaveSpawn, Assembly-CSharp
         m_MethodName: enableIsClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2016023751}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: enableIsclick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11339,6 +11355,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2016023751}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: enableIsclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1619210462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11698,6 +11726,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1128660302}
         m_TargetAssemblyTypeName: WaveSpawn, Assembly-CSharp
         m_MethodName: enableIsClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2016023751}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: enableIsclick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14372,7 +14412,7 @@ MonoBehaviour:
   Holder: {fileID: 1706421443}
   Ammotext: {fileID: 461551538}
   slider: {fileID: 886322737}
-  waveCountText: {fileID: 0}
+  waveCountText: {fileID: 1071777036}
 --- !u!1 &2023365031
 GameObject:
   m_ObjectHideFlags: 0
