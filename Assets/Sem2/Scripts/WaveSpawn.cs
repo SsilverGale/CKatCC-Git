@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,10 @@ public class WaveSpawn : MonoBehaviour
     ObjectiveSpawn OS;
     UI ui;
     XP xp;
+    bool WaveWaited = true;
+    bool ready = false;
+    bool counterCooldown = false;
+    [SerializeField] int pauseCounter = 30;
 
     void Start()
     {
@@ -43,8 +48,29 @@ public class WaveSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            ready = !ready;
+            if (ready) 
+            {
+                pauseCounter -= 20;
+            }
+            if (!ready)
+            {
+                pauseCounter += 20;
+            }
+        }
         if (isClick) 
         {
+            if (waveCount >= 1 && enemyCount <= 0 && counterCooldown == false)
+            {
+                StartCoroutine(Wait());
+            }
+            if (pauseCounter <= 0) 
+            {
+                isWaveBeat = false;
+                pauseCounter = 30;
+            }
             //for review 1
             if (waveCount == 5)
             {
@@ -52,16 +78,15 @@ public class WaveSpawn : MonoBehaviour
                 enemyCount = 1;
             }
             if (enemyCount <= 0 && !isWaveBeat)
-            {
-                waveCount++;
-                ui.UpdateWaveCount(waveCount);
-                ObjectiveRandomizer = Random.Range(0, (int)(enemyCount - Mathf.Round((float)(enemyCount * 0.6f))));
-                maxEnemyCount = (int)(maxEnemyCount * 1.2f);
-                SpawnCount = 0;
-                isWaveBeat = true;
-                enableSpawn = true;              
-  
-                //xp.AddXP(300);
+            {               
+                    waveCount++;
+                    ui.UpdateWaveCount(waveCount);
+                    ObjectiveRandomizer = Random.Range(0, (int)(enemyCount - Mathf.Round((float)(enemyCount * 0.6f))));
+                    maxEnemyCount = (int)(maxEnemyCount * 1.2f);
+                    SpawnCount = 0;
+                    isWaveBeat = true;
+                    enableSpawn = true;
+                    xp.AddXP(300);                      
             }
             if (SpawnCount == ObjectiveRandomizer)
             {
@@ -151,5 +176,12 @@ public class WaveSpawn : MonoBehaviour
         BossEnemyTag = Random.Range(0,maxEnemyCount - 4);
         Debug.Log(BossEnemyTag);
         enableEmpower = true;
+    }
+    IEnumerator Wait()
+    {
+        counterCooldown = true;
+        yield return new WaitForSeconds(1);
+        pauseCounter--;
+        counterCooldown = false;
     }
 }

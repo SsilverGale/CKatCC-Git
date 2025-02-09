@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerXP : MonoBehaviour
 {
-    int playerXP;
+    [SerializeField] int playerXP;
     XP xp;
 
     void Start()
@@ -14,7 +14,7 @@ public class PlayerXP : MonoBehaviour
 
     public void FetchXP()
     {
-        xp.GetXP();
+        playerXP = xp.GetXP();
     }
 
     public int GetPlayerXP()

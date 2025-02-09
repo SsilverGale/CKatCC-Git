@@ -12,7 +12,9 @@ public class UI : MonoBehaviour
     [SerializeField] Text Ammotext;
     [SerializeField] Slider slider;
     [SerializeField] Text waveCountText;
+    [SerializeField] Text xpText;
     PlayerHealth hp;
+    PlayerXP xp;
 
     string Class;
     bool canShoot;
@@ -29,7 +31,8 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
+        hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -37,7 +40,8 @@ public class UI : MonoBehaviour
     {
         if (hp == null)
         {
-                hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();           
+            xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
+            hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();           
         }
         if (isClick) 
         {
@@ -71,6 +75,11 @@ public class UI : MonoBehaviour
             }
         }
         
+    }
+
+    public void UpdateXP()
+    {
+        xpText.text = "XP: " + xp.GetPlayerXP().ToString();
     }
 
     public void setRelish()
