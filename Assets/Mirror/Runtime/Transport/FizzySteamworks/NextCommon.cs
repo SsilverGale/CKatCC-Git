@@ -1,4 +1,4 @@
-/*#if !DISABLESTEAMWORKS
+#if !DISABLESTEAMWORKS
 using Mirror;
 using Steamworks;
 using System;
@@ -40,4 +40,4 @@ public abstract class NextCommon
     return (managedArray, channel);
   }
 }
-#endif // !DISABLESTEAMWORKS*/
+#endif // !DISABLESTEAMWORKS

@@ -1,4 +1,4 @@
-﻿/*#if !DISABLESTEAMWORKS
+﻿#if !DISABLESTEAMWORKS
 using Steamworks;
 using System;
 using System.Collections;
@@ -148,4 +148,4 @@ namespace Mirror.FizzySteam
     protected abstract void OnConnectionFailed(CSteamID remoteId);
   }
 }
-#endif // !DISABLESTEAMWORKS*/
+#endif // !DISABLESTEAMWORKS

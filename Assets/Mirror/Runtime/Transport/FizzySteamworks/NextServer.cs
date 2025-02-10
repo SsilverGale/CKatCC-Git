@@ -1,4 +1,4 @@
-/*#if !DISABLESTEAMWORKS
+#if !DISABLESTEAMWORKS
 using Steamworks;
 using System;
 using System.Linq;
@@ -39,8 +39,7 @@ namespace Mirror.FizzySteam
       s.OnConnected += (id) => transport.OnServerConnected.Invoke(id);
       s.OnDisconnected += (id) => transport.OnServerDisconnected.Invoke(id);
       s.OnReceivedData += (id, data, ch) => transport.OnServerDataReceived.Invoke(id, new ArraySegment<byte>(data), ch);
-      //Below code was not able to be solved so I commented it out for now, this may cause problems later - Jacob
-      // s.OnReceivedError += (id, exception) => transport.OnServerError.Invoke(id, exception);
+      //s.OnReceivedError += (id, exception) => transport.OnServerError.Invoke(id, exception);
 
       if (!SteamManager.Initialized)
       {
@@ -205,4 +204,4 @@ namespace Mirror.FizzySteam
     }
   }
 }
-#endif // !DISABLESTEAMWORKS*/
+#endif // !DISABLESTEAMWORKS

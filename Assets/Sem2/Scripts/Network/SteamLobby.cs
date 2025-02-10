@@ -42,7 +42,7 @@ public class SteamLobby : MonoBehaviour
         //Checks for and error and cancels if there is one
         if(callback.m_eResult != EResult.k_EResultOK) {return;}
         
-        Debug.Log("LobbyCreatedSuccesfully");
+        Debug.Log("LobbyCreatedSuccessfully");
         //Start Hosting Game
         manager.StartHost();
 
