@@ -178,8 +178,8 @@ public class TankAbilities : MonoBehaviour
         enableShoot = true;
     }
 
-   // public void LevelSkill(string input)
-    //{
+    public void LevelSkill(string input)
+    {
 
-    //}
+    }
 }

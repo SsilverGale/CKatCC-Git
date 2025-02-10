@@ -64,4 +64,9 @@ public class SupportAbilities : MonoBehaviour
     {
         enableShoot = true;
     }
+
+    public void LevelSkill(string input)
+    {
+
+    }
 }

@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +13,7 @@ public class WaveSpawn : MonoBehaviour
     [SerializeField] GameObject BurgerBossEnemy;
     [SerializeField] GameObject HotdogBossEnemy;
     [SerializeField] GameObject PopcornBossEnemy;
-    bool isWaveBeat;
+    [SerializeField] bool isWaveBeat;
     [SerializeField] int enemyCount = 1;
     [SerializeField] int waveCount = 0;
     [SerializeField] bool enableSpawn = false;
@@ -31,7 +30,6 @@ public class WaveSpawn : MonoBehaviour
     ObjectiveSpawn OS;
     UI ui;
     XP xp;
-    bool WaveWaited = true;
     bool ready = false;
     bool counterCooldown = false;
     [SerializeField] int pauseCounter = 30;
@@ -64,6 +62,7 @@ public class WaveSpawn : MonoBehaviour
         {
             if (waveCount >= 1 && enemyCount <= 0 && counterCooldown == false)
             {
+                ui.PauseWave(true);
                 StartCoroutine(Wait());
             }
             if (pauseCounter <= 0) 
@@ -78,7 +77,8 @@ public class WaveSpawn : MonoBehaviour
                 enemyCount = 1;
             }
             if (enemyCount <= 0 && !isWaveBeat)
-            {               
+            {
+                    ui.PauseWave(false);
                     waveCount++;
                     ui.UpdateWaveCount(waveCount);
                     ObjectiveRandomizer = Random.Range(0, (int)(enemyCount - Mathf.Round((float)(enemyCount * 0.6f))));
@@ -183,5 +183,10 @@ public class WaveSpawn : MonoBehaviour
         yield return new WaitForSeconds(1);
         pauseCounter--;
         counterCooldown = false;
+    }
+
+    public int GetPauseTime()
+    {
+        return pauseCounter;
     }
 }

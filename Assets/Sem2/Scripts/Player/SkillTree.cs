@@ -30,26 +30,31 @@ public class SkillTree : MonoBehaviour
         skillName = inputN;
     }
 
+    public void MouseClamp(bool input)
+    {
+        Player.transform.GetChild(1).GetComponent<PlayerLook>().MouseClamp(input);
+    }
+
     public void ActivateSkill(int inputC)
     {
         if (inputC >= Player.GetComponent<PlayerXP>().GetPlayerXP())
         {
             Player.GetComponent<PlayerXP>().IncrementXP(-inputC);
-            if (Class == "TankPlayer")
+            if (Class == "TankPlayer(Clone)")
             {
-                Player.GetComponent<TankAbilities>().LevelSkill(inputN);
+                Player.GetComponent<TankAbilities>().LevelSkill(skillName);
             }
-            if (Class == "SniperPlayer")
+            if (Class == "SniperPlayer(Clone)")
             {
-                Player.GetComponent<SniperAbilities>().LevelSkill(inputN);
+                Player.GetComponent<SniperAbilities>().LevelSkill(skillName);
             }
-            if (Class == "SupportPlayer")
+            if (Class == "SupportPlayer(Clone)")
             {
-               Player.GetComponent<SupportAbilities>().LevelSkill(inputN);
+               Player.GetComponent<SupportAbilities>().LevelSkill(skillName);
             }
-            if (Class == "SpeedsterPlayer")
+            if (Class == "SpeedsterPlayer(Clone)")
             {
-               Player.GetComponent<SpeedsterAbilities>().LevelSkill(inputN);
+               Player.GetComponent<SpeedsterAbilities>().LevelSkill(skillName);
             }
         }
         else
@@ -58,25 +63,27 @@ public class SkillTree : MonoBehaviour
         }
     }
 
+
+
     public void SetClass()
     {
-        if (Class == "TankPlayer")
+        if (Class == "TankPlayer(Clone)")
         {
             for (int i = 0; i < tankSkills.Length; i++) 
             {tankSkills[i].SetActive(true);}
             
         }
-        if (Class == "SniperPlayer")
+        if (Class == "SniperPlayer(Clone)")
         {
             for (int i = 0; i < sniperSkills.Length; i++)
             { sniperSkills[i].SetActive(true); }
         }
-        if (Class == "SupportPlayer")
+        if (Class == "SupportPlayer(Clone)")
         {
             for (int i = 0; i < supportSkills.Length; i++)
             { supportSkills[i].SetActive(true); }
         }
-        if (Class == "SpeedsterPlayer")
+        if (Class == "SpeedsterPlayer(Clone)")
         {
             for (int i = 0; i < speedsterSkills.Length; i++)
             { speedsterSkills[i].SetActive(true); }
@@ -85,11 +92,23 @@ public class SkillTree : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "TankPlayer" || other.gameObject.name == "SpeedsterPlayer "|| other.gameObject.name == "SupportPlayer"|| other.gameObject.name == "TankPlayer")
+        if (other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)")
         {
-            PanelActivate(true);
-            Class = other.gameObject.name;
+            Class = other.gameObject.transform.parent.name;
             Player = other.gameObject;
+            MouseClamp(false);
+            PanelActivate(true);                       
         }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)")
+        {
+            MouseClamp(true);
+            PanelActivate(false);            
+        }
+    }
+
+    
 }

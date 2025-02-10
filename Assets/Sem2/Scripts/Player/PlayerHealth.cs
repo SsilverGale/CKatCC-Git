@@ -73,5 +73,10 @@ public class PlayerHealth : MonoBehaviour
         return pHealth;
     }
 
+    public void IncrementHealth(float input)
+    {
+        pHealth += input;
+    }
+
 
 }

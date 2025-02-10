@@ -464,7 +464,7 @@ PrefabInstance:
       addedObject: {fileID: 5183517239344318521}
     - targetCorrespondingSourceObject: {fileID: 8559271953487652208, guid: 6fd97203e09def34a9f7228238eda688, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 738997102631569632}
+      addedObject: {fileID: 169823904942943544}
   m_SourcePrefab: {fileID: 100100000, guid: 6fd97203e09def34a9f7228238eda688, type: 3}
 --- !u!1 &5177736023315889013 stripped
 GameObject:
@@ -487,7 +487,7 @@ MonoBehaviour:
   RangedHeal: {fileID: 3974291885205158586, guid: 7866a60010f13994ab1c4dff6fd1c2ca, type: 3}
   Fist1: {fileID: 14129524884708378}
   Fist2: {fileID: 8721466569148206497}
---- !u!114 &738997102631569632
+--- !u!114 &169823904942943544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -496,9 +496,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5177736023315889013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23c8b829c299a945b835d22b4324b52, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e55950dc3ce2cd41879b6803f10c0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerXP: 0
 --- !u!4 &6421423169565067246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7498173822857075179, guid: 6fd97203e09def34a9f7228238eda688, type: 3}

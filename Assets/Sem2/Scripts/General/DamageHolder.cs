@@ -10,4 +10,9 @@ public class DamageHolder : MonoBehaviour
     {
         return Damage;
     }
+
+    public void IncrementDamage(float input)
+    {
+        Damage += input;
+    }
 }

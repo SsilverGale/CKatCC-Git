@@ -13,8 +13,12 @@ public class UI : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] Text waveCountText;
     [SerializeField] Text xpText;
+    [SerializeField] Text waveCountdownText;
     PlayerHealth hp;
     PlayerXP xp;
+    WaveSpawn waveSpawn;
+
+    bool isWavePaused = false;
 
     string Class;
     bool canShoot;
@@ -31,6 +35,7 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waveSpawn = GameObject.FindWithTag("WaveSpawn").GetComponent<WaveSpawn>();
         xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
         hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
     }
@@ -38,6 +43,11 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isWavePaused)
+        {           
+            waveCountdownText.text = "Next Wave: " + waveSpawn.GetPauseTime().ToString();
+        }
+        
         if (hp == null)
         {
             xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
@@ -146,6 +156,12 @@ public class UI : MonoBehaviour
     public void UpdateWaveCount(int wave)
     {
         waveCountText.text = "Wave: " + wave;
+    }
+
+    public void PauseWave(bool input)
+    {
+        waveCountdownText.gameObject.SetActive(input);
+        isWavePaused = input;
     }
 
 }
