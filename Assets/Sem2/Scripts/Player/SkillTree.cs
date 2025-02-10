@@ -12,7 +12,7 @@ public class SkillTree : MonoBehaviour
     [SerializeField] GameObject[] sniperSkills;
     [SerializeField] GameObject[] tankSkills;
     [SerializeField] GameObject[] supportSkills;
-    XP xpGen; 
+    XP xpGen;
     GameObject Player;
 
 
@@ -25,27 +25,31 @@ public class SkillTree : MonoBehaviour
         treePanel.SetActive(input);
     }
 
-    public void ActivateSkill(string inputN, int inputC)
+    public void SetSkillName(string inputN)
+    {
+        skillName = inputN;
+    }
+
+    public void ActivateSkill(int inputC)
     {
         if (inputC >= Player.GetComponent<PlayerXP>().GetPlayerXP())
         {
             Player.GetComponent<PlayerXP>().IncrementXP(-inputC);
-            skillName = inputN;
             if (Class == "TankPlayer")
             {
-                //Player.GetComponent<TankAbilities>().LevelSkill(inputN);
+                Player.GetComponent<TankAbilities>().LevelSkill(inputN);
             }
             if (Class == "SniperPlayer")
             {
-                // Player.GetComponent<SniperAbilities>().LevelSkill(inputN);
+                Player.GetComponent<SniperAbilities>().LevelSkill(inputN);
             }
             if (Class == "SupportPlayer")
             {
-                //Player.GetComponent<SupportAbilities>().LevelSkill(inputN);
+               Player.GetComponent<SupportAbilities>().LevelSkill(inputN);
             }
             if (Class == "SpeedsterPlayer")
             {
-                //Player.GetComponent<SpeedsterAbilities>().LevelSkill(inputN);
+               Player.GetComponent<SpeedsterAbilities>().LevelSkill(inputN);
             }
         }
         else
@@ -56,7 +60,6 @@ public class SkillTree : MonoBehaviour
 
     public void SetClass()
     {
-        Class = gameObject.transform.parent.name;
         if (Class == "TankPlayer")
         {
             for (int i = 0; i < tankSkills.Length; i++) 
