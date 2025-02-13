@@ -19,6 +19,11 @@ public class SniperAbilities : MonoBehaviour
     GameObject currentProjectile;
     [SerializeField] GameObject[] arrowSet = new GameObject[2];
 
+    [SerializeField] float dmgAmp = 1;
+    float reloadCDN = 1;
+    float blltVelo = 1;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +39,7 @@ public class SniperAbilities : MonoBehaviour
     {
         if (pH.GetIsDowned() == false)
         {
-            if (Input.GetMouseButtonDown(0) && enableShoot) 
+            if (Input.GetMouseButtonDown(0) && enableShoot)
             {
                 capturedTime = Time.time;
                 SBA.DrawString();
@@ -117,10 +122,51 @@ public class SniperAbilities : MonoBehaviour
 
     public float getHoldDown()
     {
-        if (chargeTime >= 1.5f) 
+        if (chargeTime >= 1.5f)
         {
             chargeTime = 1.5f;
         }
         return chargeTime;
+    }
+
+    public void LevelSkill(string input)
+    {
+        if (input == "DMGUP")
+        {
+            dmgAmp += 0.05f;
+        }
+        if (input == "BLLTVELOUP")
+        {
+            blltVelo += 0.05f;
+        }
+        if (input == "RLDDWN")
+        {
+            reloadCDN -= 0.05f;
+        }
+        if (input == "AMMOUP")
+        {
+
+        }
+        if (input == "HPUP")
+        {
+            GetComponent<PlayerHealth>().IncrementHealth(5);
+        }
+        if (input == "SPDUP")
+        {
+            GetComponent<PlayerMove>().IncrementSpeed(1);
+        }
+    }
+
+    public float ReturnAmp()
+    {
+        return dmgAmp;
+    }
+    public float ReturnVelocity()
+    {
+        return blltVelo;
+    }
+    public float ReturnReload()
+    {
+        return reloadCDN;
     }
 }

@@ -29,6 +29,7 @@ TagManager:
   - PopcornEnemy
   - HotdogEnemy
   - FIHS
+  - XPHolder
   layers:
   - Default
   - TransparentFX

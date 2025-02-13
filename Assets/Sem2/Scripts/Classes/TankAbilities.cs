@@ -54,11 +54,13 @@ public class TankAbilities : MonoBehaviour
             {
                 if (isBig)
                 {
+                    gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
                     shrinking = true;
                     Camera.transform.position -= new Vector3(0.1f, 1.8f, 2);
                 }
                 if (!isBig)
                 {
+                    gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
                     growing = true;
                     Camera.transform.position += new Vector3(0.1f, 1.8f, 2);
                 }
@@ -176,5 +178,10 @@ public class TankAbilities : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         enableShoot = true;
+    }
+
+    public void LevelSkill(string input)
+    {
+
     }
 }

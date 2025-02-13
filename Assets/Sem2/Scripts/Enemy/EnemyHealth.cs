@@ -36,6 +36,18 @@ public class EnemyHealth : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag("WaveSpawn").GetComponent<WaveSpawn>().DecreaseEnemyCount();
             xp.AddXP(15);
+            GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i].GetComponent<PlayerXP>().FetchXP();
+            }
+            temp = GameObject.FindGameObjectsWithTag("UI");
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i].GetComponent<UI>().UpdateXP();
+            }
+            
+            
             Destroy(gameObject);
         }
     }

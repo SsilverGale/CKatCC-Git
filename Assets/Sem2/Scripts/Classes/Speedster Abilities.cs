@@ -61,7 +61,6 @@ public class SpeedsterAbilities : MonoBehaviour
 
     void OnFire()
     {
-        
     }
 
     private IEnumerator Cooldown()
@@ -92,5 +91,10 @@ public class SpeedsterAbilities : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         enableShoot = true;
+    }
+
+    public void LevelSkill(string input)
+    {
+
     }
 }

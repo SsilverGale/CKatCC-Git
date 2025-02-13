@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class XP : MonoBehaviour
 {
-    int TotalXP;
+    [SerializeField] int TotalXP;
     public void AddXP(int input)
     {
         TotalXP += input;

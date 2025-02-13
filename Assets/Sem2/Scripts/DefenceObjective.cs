@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DefenceObjective : MonoBehaviour
 {
-    DamageHolder DH;
     bool isInvincible = false;
     float oHealth = 500;
     float reduceHealth;
@@ -12,8 +11,6 @@ public class DefenceObjective : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DH = GetComponent<DamageHolder>();
-        reduceHealth = DH.GetDamage();
     }
 
     // Update is called once per frame

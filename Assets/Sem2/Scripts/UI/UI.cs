@@ -12,7 +12,13 @@ public class UI : MonoBehaviour
     [SerializeField] Text Ammotext;
     [SerializeField] Slider slider;
     [SerializeField] Text waveCountText;
+    [SerializeField] Text xpText;
+    [SerializeField] Text waveCountdownText;
     PlayerHealth hp;
+    PlayerXP xp;
+    WaveSpawn waveSpawn;
+
+    bool isWavePaused = false;
 
     string Class;
     bool canShoot;
@@ -29,31 +35,29 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        waveSpawn = GameObject.FindWithTag("WaveSpawn").GetComponent<WaveSpawn>();
+        xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
+        hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isWavePaused)
+        {           
+            waveCountdownText.text = "Next Wave: " + waveSpawn.GetPauseTime().ToString();
+        }
+        
         if (hp == null)
         {
-            try{
-                hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-            } catch{
-
-            }
-            
+            xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
+            hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();           
         }
-        try{
-            slider.value =  hp.getHp()/100;
-        } catch {
-            
-        }
-
-        if (Input.GetMouseButtonDown(0))
+        if (isClick) 
         {
-            Invoke("enableIsclick", 2f);
+            slider.value = hp.getHp() / 100;
         }
+           
         if (MustardCount >= (maxAmmo - currentAmmo))
         {
             MustardReload = false;
@@ -81,6 +85,11 @@ public class UI : MonoBehaviour
             }
         }
         
+    }
+
+    public void UpdateXP()
+    {
+        xpText.text = "XP: " + xp.GetPlayerXP().ToString();
     }
 
     public void setRelish()
@@ -133,7 +142,7 @@ public class UI : MonoBehaviour
         return currentAmmo;
     }
 
-    void enableIsclick()
+    public void enableIsclick()
     {
         isClick = true;
     }
@@ -147,6 +156,12 @@ public class UI : MonoBehaviour
     public void UpdateWaveCount(int wave)
     {
         waveCountText.text = "Wave: " + wave;
+    }
+
+    public void PauseWave(bool input)
+    {
+        waveCountdownText.gameObject.SetActive(input);
+        isWavePaused = input;
     }
 
 }

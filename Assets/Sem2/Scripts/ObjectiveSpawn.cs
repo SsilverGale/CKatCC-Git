@@ -16,12 +16,6 @@ public class ObjectiveSpawn : MonoBehaviour
         WS = GameObject.FindWithTag("WaveSpawn").GetComponent<WaveSpawn>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void NewObjective()
     {
         int random = Random.Range(0, 2);

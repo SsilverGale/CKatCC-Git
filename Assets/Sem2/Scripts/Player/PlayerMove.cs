@@ -80,4 +80,9 @@ public class PlayerMove : NetworkBehaviour
             onGround = false;
         }
     }
+
+    public void IncrementSpeed(float input)
+    {
+        walkSpeed += input;
+    }
 }

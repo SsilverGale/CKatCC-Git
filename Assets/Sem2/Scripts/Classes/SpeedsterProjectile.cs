@@ -11,15 +11,20 @@ public class SpeedsterProjectile : MonoBehaviour
     Transform Player;
     CapsuleCollider collider;
 
+    float dmgAmp = 1;
+    float blltVelo = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<CapsuleCollider>();
         Player = GameObject.FindWithTag("Player").transform;
+        //dmgAmp = Player.GetComponent<SniperAbilities>().ReturnAmp();
+        //blltVelo = Player.GetComponent<SniperAbilities>().ReturnVelocity();
         rb = GetComponent<Rigidbody>();
         Camera = GameObject.FindWithTag("MainCamera").transform;
         Ray ray = new Ray(Player.position, Camera.forward);
-        rb.AddForce(ray.direction * speed, ForceMode.Impulse);
+        rb.AddForce(ray.direction * speed * blltVelo, ForceMode.Impulse);
         transform.rotation = Quaternion.LookRotation(ray.direction) * new Quaternion(90, 0, 0, 90);
     }
 
