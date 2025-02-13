@@ -61,7 +61,6 @@ public class SpeedsterAbilities : MonoBehaviour
 
     void OnFire()
     {
-        
     }
 
     private IEnumerator Cooldown()

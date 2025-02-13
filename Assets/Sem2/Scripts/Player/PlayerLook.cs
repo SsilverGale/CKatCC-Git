@@ -25,7 +25,8 @@ public class PlayerLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!hp.GetIsDowned()){
+        if(!hp.GetIsDowned())
+        {
         if (Input.GetMouseButton(0) && firstTime) 
         {
                 Cursor.lockState = CursorLockMode.Locked;
@@ -47,15 +48,14 @@ public class PlayerLook : MonoBehaviour
 
     public void MouseClamp(bool input)
     {
-        Debug.Log("Pass1");
         if (input == true)
         {
-            Debug.Log("Pass2");
+            mouseSensitivity = 1f;
             Cursor.lockState = CursorLockMode.Locked;
         }
         if (input == false)
         {
-            Debug.Log("Pass2");
+            mouseSensitivity = 0f;
             Cursor.lockState = CursorLockMode.Confined;
         }
         

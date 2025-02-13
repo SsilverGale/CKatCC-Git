@@ -9,8 +9,8 @@ public class KarbineAnimations : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Animator>();
-        animator2 = transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<Animator>();
+        animator = transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<Animator>();
+        animator2 = transform.GetChild(1).GetChild(2).GetChild(1).GetComponent<Animator>();
     }
 
     public void StartShoot()
