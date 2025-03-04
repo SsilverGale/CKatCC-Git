@@ -1970,9 +1970,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: fae3d81f190a4e94f9464ee524e7dccf, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fae3d81f190a4e94f9464ee524e7dccf, type: 3}
       propertyPath: m_Name
       value: GreyBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fae3d81f190a4e94f9464ee524e7dccf, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2147,10 +2155,16 @@ MonoBehaviour:
   BurgerBossEnemy: {fileID: 4696438255591977017, guid: afe2a24ea23080d4f80bd58fe062a26f, type: 3}
   HotdogBossEnemy: {fileID: 8625098668538162390, guid: 6c799a2777ef16741b621fa0240b7253, type: 3}
   PopcornBossEnemy: {fileID: 1582163918429727949, guid: 162e9793801f1f8449de67dd37671c91, type: 3}
+  isWaveBeat: 0
   enemyCount: 0
   waveCount: 1
   enableSpawn: 0
+  spawnPointcount: 0
+  maxEnemyCount: 20
   WinUI: {fileID: 1015536296}
+  BossEnemyTag: 0
+  ObjectiveRandomizer: 0
+  pauseCounter: 30
 --- !u!4 &1128660303
 Transform:
   m_ObjectHideFlags: 0
@@ -4042,7 +4056,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.6415094, g: 0.51500624, b: 0.19063723, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4102,7 +4116,7 @@ Transform:
   m_GameObject: {fileID: 2012189992}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -5.2, y: 54, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4232,8 +4246,11 @@ MonoBehaviour:
   Relish: {fileID: 2800000, guid: 91647c7d38e4e8749a6e2df5b1411580, type: 3}
   Mustard: {fileID: 2800000, guid: 9423ec168b2e7f9499f5bfd71961716e, type: 3}
   Holder: {fileID: 1706421443}
-  text: {fileID: 461551538}
+  Ammotext: {fileID: 0}
   slider: {fileID: 886322737}
+  waveCountText: {fileID: 0}
+  xpText: {fileID: 0}
+  waveCountdownText: {fileID: 0}
 --- !u!1 &2024697522
 GameObject:
   m_ObjectHideFlags: 0
