@@ -19,10 +19,23 @@ public class SniperAbilities : MonoBehaviour
     GameObject currentProjectile;
     [SerializeField] GameObject[] arrowSet = new GameObject[2];
 
-    [SerializeField] float dmgAmp = 1;
+    [SerializeField] float critMod = 1;
     float reloadCDN = 1;
     float blltVelo = 1;
 
+    bool enableFire = false;
+    bool enablePoison = false;
+
+    [SerializeField] GameObject bearTrap;
+
+    int bearTrapCount;
+    float bearTrapReload = 0;
+    bool enableBearTrap = false;
+
+    float fireMod = 1;
+    float poisonMod = 1;
+
+    float critDMG = 2;
 
 
     // Start is called before the first frame update
@@ -56,10 +69,24 @@ public class SniperAbilities : MonoBehaviour
             {
                 SwapArrow();
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                PlaceBearTrap();
+            }
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 SoundManager.PlaySound(SoundType.JUMP);
             }
+        }
+
+        if (bearTrapCount < 3)
+        {
+            bearTrapReload += Time.deltaTime;
+        }
+        if (bearTrapReload >= 10) 
+        {
+            bearTrapCount++;
+            bearTrapReload = 0;            
         }
 
 
@@ -92,12 +119,12 @@ public class SniperAbilities : MonoBehaviour
             transform.GetChild(1).GetChild(0).GetChild(1).GetChild(2).GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).GetChild(0).GetChild(1).GetChild(2).GetChild(1).gameObject.SetActive(false);
         }
-        if (projectileCycle == 1)
+        if (projectileCycle == 1 && enableFire)
         {
             transform.GetChild(1).GetChild(0).GetChild(1).GetChild(2).GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).GetChild(0).GetChild(1).GetChild(2).GetChild(1).gameObject.SetActive(false);
         }
-        if (projectileCycle == 2)
+        if (projectileCycle == 2 && enablePoison)
         {
             transform.GetChild(1).GetChild(0).GetChild(1).GetChild(2).GetChild(1).gameObject.SetActive(true);
             transform.GetChild(1).GetChild(0).GetChild(1).GetChild(2).GetChild(0).gameObject.SetActive(false);
@@ -131,35 +158,31 @@ public class SniperAbilities : MonoBehaviour
 
     public void LevelSkill(string input)
     {
-        if (input == "DMGUP")
+        if (input == "CRTRATE")
         {
-            dmgAmp += 0.05f;
-        }
-        if (input == "BLLTVELOUP")
-        {
-            blltVelo += 0.05f;
+            critMod += 2.5f;
         }
         if (input == "RLDDWN")
         {
             reloadCDN -= 0.05f;
         }
-        if (input == "AMMOUP")
-        {
-
-        }
-        if (input == "HPUP")
-        {
-            GetComponent<PlayerHealth>().IncrementHealth(5);
-        }
         if (input == "SPDUP")
         {
             GetComponent<PlayerMove>().IncrementSpeed(1);
         }
+        if (input == "BEARTRAP")
+        {
+            enableBearTrap = true;
+        }
+        if (input == "CRTDMG")
+        {
+            critDMG += 0.03f;
+        }
     }
 
-    public float ReturnAmp()
+    public float ReturnCritModifier()
     {
-        return dmgAmp;
+        return critMod;
     }
     public float ReturnVelocity()
     {
@@ -168,5 +191,31 @@ public class SniperAbilities : MonoBehaviour
     public float ReturnReload()
     {
         return reloadCDN;
+    }
+
+    public void PlaceBearTrap()
+    {
+        if (bearTrapCount > 0)
+        {
+            Instantiate(bearTrap);
+            bearTrapCount--;
+            bearTrapReload = 0;
+        }
+        
+    }
+
+    public float GetFireMod()
+    {
+        return fireMod;
+    }
+
+    public float GetPoisonMod()
+    {
+        return poisonMod;
+    }
+
+    public float GetCritDMG()
+    {
+        return critDMG; 
     }
 }

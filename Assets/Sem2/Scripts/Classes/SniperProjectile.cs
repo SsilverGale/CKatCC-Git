@@ -1,6 +1,7 @@
 using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SniperProjectile : MonoBehaviour
@@ -17,7 +18,13 @@ public class SniperProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         SA = GameObject.FindWithTag("Player").GetComponent<SniperAbilities>();
+        int random = Random.Range(0, 100);
+        if (random >= 0 && random <= 100 * (SA.ReturnCritModifier() / 100))
+        {
+            GetComponent<DamageHolder>().SetDamage(GetComponent<DamageHolder>().GetDamage() * SA.GetCritDMG());
+        }
         collider = GetComponent<CapsuleCollider>(); 
         Player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody>();
@@ -38,14 +45,28 @@ public class SniperProjectile : MonoBehaviour
         {                     
             if (transform.name == "SniperProjectileFire(Clone)")
             {
-                Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
-                Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
-                Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
-                Instantiate(moly, transform.position + new Vector3(0,0.2f,0), Quaternion.identity);
+                GameObject temp = Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
+                GameObject temp2 = Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
+                GameObject temp3 = Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
+                GameObject temp4 = Instantiate(moly, transform.position + new Vector3(0,0.2f,0), Quaternion.identity);
+                temp.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
+                temp2.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
+                temp3.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
+                temp4.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
                 Destroy(gameObject);
             }
             Destroy(gameObject);
         }
         
+    }
+
+    public float GetFireMod()
+    {
+        return SA.GetFireMod();
+    }
+
+    public float GetPoisonMod()
+    {
+        return SA.GetPoisonMod();
     }
 }

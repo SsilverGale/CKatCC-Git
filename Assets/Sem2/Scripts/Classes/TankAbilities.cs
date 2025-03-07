@@ -22,6 +22,7 @@ public class TankAbilities : MonoBehaviour
     bool enableSwingSound = true;
     bool enableShoot = true;
     UI ui;
+    int bigFormHP = 300;
     
 
     void Start()
@@ -54,12 +55,14 @@ public class TankAbilities : MonoBehaviour
             {
                 if (isBig)
                 {
+                    GetComponent<PlayerHealth>().UpdateMaxHP(bigFormHP);
                     gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
                     shrinking = true;
                     Camera.transform.position -= new Vector3(0.1f, 1.8f, 2);
                 }
                 if (!isBig)
                 {
+                    GetComponent<PlayerHealth>().UpdateMaxHP(125);
                     gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
                     growing = true;
                     Camera.transform.position += new Vector3(0.1f, 1.8f, 2);
@@ -182,6 +185,17 @@ public class TankAbilities : MonoBehaviour
 
     public void LevelSkill(string input)
     {
-
+        if (input == "LRGHPUP")
+        {
+            GetComponent<PlayerHealth>().UpdateMaxHP(450);
+        }
+        if (input == "MLEDMG")
+        {
+           gameObject.transform.GetChild(1).GetChild(0).GetComponent<DamageHolder>().IncrementDamage(20);
+        }
+        if (input == "MLESIZE")
+        {
+            gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().transform.localScale  *= 1.5f;
+        }
     }
 }

@@ -15,4 +15,9 @@ public class DamageHolder : MonoBehaviour
     {
         Damage += input;
     }
+
+    public void SetDamage(float input)
+    {
+        Damage = input;
+    }
 }

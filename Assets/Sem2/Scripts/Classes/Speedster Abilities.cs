@@ -17,7 +17,12 @@ public class SpeedsterAbilities : MonoBehaviour
     [SerializeField] float jumpForce = 55f;
     UI ui;
     KarbineAnimations KA;
-
+    bool enableRegen = false;
+    bool enableDash = false;
+    bool enableDoubleJump = false;
+    float dashForce = 5;
+    int dashCount = 0;
+    int maxDashCount = 0;
 
     void Start()
     {
@@ -45,7 +50,7 @@ public class SpeedsterAbilities : MonoBehaviour
         {
             SoundManager.PlaySound(SoundType.JUMP);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == false && canDoubleJump)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == false && canDoubleJump && enableDoubleJump)
         {
             SoundManager.PlaySound(SoundType.JUMP);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -56,6 +61,14 @@ public class SpeedsterAbilities : MonoBehaviour
         {
             enableShoot = false;
             StartCoroutine(Reload());
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCount > 0 && enableDash)
+        {
+            rb.AddForce(Vector3.forward * dashForce, ForceMode.Impulse);
+        }
+        if (enableRegen)
+        {
+            GetComponent<PlayerHealth>().HealPlayer(0.001f);
         }
     }
 
@@ -87,14 +100,47 @@ public class SpeedsterAbilities : MonoBehaviour
         }
     }
 
+    public void LevelSkill(string input)
+    {
+
+        if (input == "SPDUP")
+        {
+            GetComponent<PlayerMove>().IncrementSpeed(1);
+        }
+        if (input == "HPREGEN")
+        {
+            enableRegen = true;
+        }
+        if (input == "MAXHPUP")
+        {
+            GetComponent<PlayerHealth>().UpdateMaxHP(125);
+        }
+        if (input == "DASH")
+        {
+            maxDashCount = 1;
+            enableDash = true;
+        }
+        if (input == "DASH+")
+        {
+            dashForce += 2;
+        }
+        if (input == "DBJUMP")
+        {
+            enableDoubleJump = true;
+        }
+        if (input == "DASHCH")
+        {
+            maxDashCount++;
+        }
+        if (input == "JUMP+")
+        {
+            jumpForce += 2;
+        }
+    }
+
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(1.5f);
         enableShoot = true;
-    }
-
-    public void LevelSkill(string input)
-    {
-
     }
 }

@@ -13,6 +13,9 @@ public class EnemyHealth : MonoBehaviour
     bool enableFire = false;
     XP xp;
 
+    float fireDMG;
+
+
     void Start()
     {
         xp = GameObject.FindGameObjectWithTag("XPHolder").GetComponent<XP>();
@@ -28,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         }
         if (enableFire)
         {
-            hp -= 1;
+            hp -= fireDMG;
             enableFire = false;
             StartCoroutine(FireTick());
         }
@@ -72,6 +75,7 @@ public class EnemyHealth : MonoBehaviour
             }
             if (collision.name == "SniperProjectilePoison")
             {
+                collision.GetComponent<SniperProjectile>().GetPoisonMod();
                 enablePoison = true;
                 captureTime = Time.time;
             }
@@ -80,6 +84,7 @@ public class EnemyHealth : MonoBehaviour
         if (collision.transform.tag == "Molotov")
         {
             enableFire = true;
+            fireDMG = collision.GetComponent<DamageHolder>().GetDamage();
         }
 
     }

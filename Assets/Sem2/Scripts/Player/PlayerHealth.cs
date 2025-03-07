@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
 
     bool isDowned = false;
 
+    bool enableRegen = false;
+
+    bool hit = false;
     void Start()
     {
         pHealth = 100f;
@@ -20,6 +23,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (hit)
+        {
+            StartCoroutine(RegenReset());
+        }
+        if (enableRegen && pHealth < PlayerStats.pHealth)
+        {
+            pHealth += 0.001f;
+        }
         if (pHealth <= 0)
         {
             isDowned = true;
@@ -31,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
         if ((collision.gameObject.tag == "Oucher" || collision.gameObject.tag == "BurgerEnemy" || collision.gameObject.tag == "PopcornExplosion" || collision.gameObject.tag == "HotdogBullet" || collision.gameObject.tag == "FIHS") && isInvincible == false)
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
+            hit = true;
             StartCoroutine(HurtPlayer());
         }
     }
@@ -39,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
         if ((collision.gameObject.tag == "Oucher" || collision.gameObject.tag == "BurgerEnemy" || collision.gameObject.tag == "PopcornExplosion" || collision.gameObject.tag == "HotdogBullet" || collision.gameObject.tag == "FIHS") && isInvincible == false)
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
+            hit = true;
             StartCoroutine(HurtPlayer());
         }
         if (collision.gameObject.tag == "SupportHealExplosion")
@@ -55,6 +68,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log(pHealth);
         yield return new WaitForSeconds(0.2f);
         isInvincible = false;
+    }
+
+    IEnumerator RegenReset()
+    {
+        enableRegen = false;
+        yield return new WaitForSeconds(5f);
+        enableRegen = true;
     }
 
     public void HealPlayer(float healAmount)
@@ -78,5 +98,8 @@ public class PlayerHealth : MonoBehaviour
         pHealth += input;
     }
 
-
+    public void UpdateMaxHP(float input)
+    {
+        pHealth = input;
+    }
 }

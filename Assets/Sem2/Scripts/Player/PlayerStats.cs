@@ -7,4 +7,5 @@ public static class PlayerStats
     public static float walkSpeed;
     public static float jumpForce;
     public static float pHealth;
+
 }
