@@ -1,5 +1,3 @@
-using Mirror.BouncyCastle.Asn1.Esf;
-using Mirror.Examples.BilliardsPredicted;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
