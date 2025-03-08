@@ -21,7 +21,7 @@ public class PlayerMove : NetworkBehaviour
         //setting initial values
         walkSpeed = 10f;
         jumpForce = 4000f;
-
+        playerHealth = GetComponent<PlayerHealth>();
         //setting the rigidbody
         rb = GetComponent<Rigidbody>();
     }

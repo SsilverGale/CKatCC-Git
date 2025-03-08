@@ -77,6 +77,7 @@ public class SniperAbilities : MonoBehaviour
             {
                 SoundManager.PlaySound(SoundType.JUMP);
             }
+            
         }
 
         if (bearTrapCount < 3)
@@ -108,7 +109,14 @@ public class SniperAbilities : MonoBehaviour
     //swap arrow function
     public void SwapArrow()
     {
-        projectileCycle++;
+        if (enableFire || enablePoison)
+        {
+            projectileCycle++;
+        }
+        if (enableFire || projectileCycle == 2) 
+        {
+            projectileCycle = 0;
+        }
         if (projectileCycle >= 3)
         {
             projectileCycle = 0;

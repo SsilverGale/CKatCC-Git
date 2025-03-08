@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,12 @@ public class UI : MonoBehaviour
     [SerializeField] Text waveCountText;
     [SerializeField] Text xpText;
     [SerializeField] Text waveCountdownText;
+    [SerializeField] GameObject[] classAbilityUI;
+    [SerializeField] Button[] tankButtons;
+    [SerializeField] Button[] sniperButtons;
+    [SerializeField] Button[] speedsterButtons;
+    [SerializeField] Button shift;
+    [SerializeField] Button E;
     PlayerHealth hp;
     PlayerXP xp;
     WaveSpawn waveSpawn;
@@ -31,6 +38,18 @@ public class UI : MonoBehaviour
     bool isClick = false;
 
     bool MustardReload = false;
+
+    bool shiftEnabled = false;
+
+    bool eEnabled = false;
+
+    bool activateShift = false;
+
+    bool activateE = false;
+
+    bool abilityShiftActive = false;
+
+    bool abilityEActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +103,32 @@ public class UI : MonoBehaviour
 
             }
         }
-        
+
+        if (shiftEnabled && abilityShiftActive)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                shift.GetComponent<Button>().interactable = false;
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                shift.GetComponent<Button>().interactable = true;
+            }
+        }
+
+        if (eEnabled && abilityEActive)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                E.GetComponent<Button>().interactable = false;
+            }
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                E.GetComponent<Button>().interactable = true;
+            }
+        }
+
     }
 
     public void UpdateXP()
@@ -95,6 +139,9 @@ public class UI : MonoBehaviour
     public void setRelish()
     {
         Holder.GetComponent<RawImage>().texture = Relish;
+        shift = sniperButtons[0];
+        E = sniperButtons[1];
+        classAbilityUI[1].SetActive(true);
         Class = "Relish";
         time = 3f;
 
@@ -102,6 +149,8 @@ public class UI : MonoBehaviour
     public void setKetchup()
     {
         Holder.GetComponent<RawImage>().texture = Ketchup;
+        shift = speedsterButtons[0];
+        classAbilityUI[0].SetActive(true);
         maxAmmo = 350;
         Class = "Ketchup";
         time = 1.5f;
@@ -111,6 +160,8 @@ public class UI : MonoBehaviour
     public void setMustard()
     {
         Holder.GetComponent<RawImage>().texture = Mustard;
+        shift = tankButtons[0];
+        classAbilityUI[2].SetActive(true);
         maxAmmo = 6;
         Class = "Mustard";
         time = 0.75f;
@@ -162,6 +213,16 @@ public class UI : MonoBehaviour
     {
         waveCountdownText.gameObject.SetActive(input);
         isWavePaused = input;
+    }
+
+    public void SetShift(bool input)
+    {
+        abilityShiftActive = input;
+    }
+
+    public void SetE(bool input)
+    {
+        abilityEActive = input;
     }
 
 }
