@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Lobbies.Models;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class SpeedsterAbilities : MonoBehaviour
 {
@@ -20,15 +22,19 @@ public class SpeedsterAbilities : MonoBehaviour
     bool enableRegen = false;
     bool enableDash = false;
     bool enableDoubleJump = false;
-    float dashForce = 5;
-    int dashCount = 0;
+    float dashForce = 5500;
+    [SerializeField] int dashCount = 0;
     int maxDashCount = 0;
+    float dashReload = 0;
+    RaycastHit hit;
+    Vector3 rayHit;
 
     void Start()
     {
         KA = GetComponent<KarbineAnimations>();
         ui = GameObject.FindWithTag("UI").GetComponent<UI>();
         jumpForce = 55f;
+        dashForce = 1000f;
         rb = GetComponent<Rigidbody>(); 
         enableShoot = true;
         cam = GameObject.FindWithTag("MainCamera").transform;
@@ -54,22 +60,58 @@ public class SpeedsterAbilities : MonoBehaviour
         {
             SoundManager.PlaySound(SoundType.JUMP);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            
             canDoubleJump = false;
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            KA.StartReload();
             enableShoot = false;
             StartCoroutine(Reload());
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCount > 0 && enableDash)
-        {
-            rb.AddForce(Vector3.forward * dashForce, ForceMode.Impulse);
-        }
+        
         if (enableRegen)
         {
             GetComponent<PlayerHealth>().HealPlayer(0.001f);
         }
+
+        if (dashCount < 3)
+        {
+            dashReload += Time.deltaTime;
+        }
+        if (dashReload >= 10)
+        {
+            dashCount++;
+            ui.UpdateDash(1);
+            dashReload = 0;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCount > 0 && enableDash)
+        {
+            float tempH = Input.GetAxis("Horizontal");
+            float tempV = Input.GetAxis("Vertical");
+
+            Vector3 forward = Camera.main.transform.forward;
+            Vector3 right = Camera.main.transform.right;
+
+            Vector3 FFRI = tempV * forward;
+            Vector3 RFRI = tempH * right;
+
+            Vector3 CRM = FFRI + RFRI;
+
+            rb.AddForce(CRM * dashForce, ForceMode.Impulse);
+            dashCount--;
+            ui.UpdateDash(-1);
+        }
+        if (Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, Camera.main.transform.forward * hit.distance, Color.yellow);
+            Debug.Log(hit.collider);
+            rayHit = hit.point;
+        }
+
     }
 
     void OnFire()
@@ -142,5 +184,10 @@ public class SpeedsterAbilities : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         enableShoot = true;
+    }
+
+    public Vector3 ReturnRayHit()
+    {
+        return rayHit;
     }
 }

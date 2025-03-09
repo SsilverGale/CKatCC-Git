@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -24,6 +25,10 @@ public class UI : MonoBehaviour
     PlayerHealth hp;
     PlayerXP xp;
     WaveSpawn waveSpawn;
+    int dashCount = 0;
+    [SerializeField] Text dashText;
+    int maxDashCount = 0;
+    float dashReload = 0;
 
     bool isWavePaused = false;
 
@@ -50,6 +55,8 @@ public class UI : MonoBehaviour
     bool abilityShiftActive = false;
 
     bool abilityEActive = false;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -129,6 +136,11 @@ public class UI : MonoBehaviour
             }
         }
 
+        if (Class == "Ketchup")
+        {
+           dashText.text = dashCount.ToString();
+        }
+
     }
 
     public void UpdateXP()
@@ -161,6 +173,9 @@ public class UI : MonoBehaviour
     {
         Holder.GetComponent<RawImage>().texture = Mustard;
         shift = tankButtons[0];
+        abilityShiftActive = true;
+        shiftEnabled = true;
+        SetShift(true);
         classAbilityUI[2].SetActive(true);
         maxAmmo = 6;
         Class = "Mustard";
@@ -217,12 +232,18 @@ public class UI : MonoBehaviour
 
     public void SetShift(bool input)
     {
+        shiftEnabled = input;
         abilityShiftActive = input;
     }
 
     public void SetE(bool input)
     {
+        eEnabled = input;
         abilityEActive = input;
     }
 
+    public void UpdateDash(int input)
+    {
+        dashCount += input;
+    }
 }

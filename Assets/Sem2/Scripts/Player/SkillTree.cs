@@ -7,12 +7,13 @@ public class SkillTree : MonoBehaviour
     [SerializeField] GameObject treePanel;
     [SerializeField] string Class;
     [SerializeField] string skillName;
-    [SerializeField] GameObject[] speedsterSkills;
-    [SerializeField] GameObject[] sniperSkills;
-    [SerializeField] GameObject[] tankSkills;
-    [SerializeField] GameObject[] supportSkills;
+    [SerializeField] GameObject speedsterSkills;
+    [SerializeField] GameObject sniperSkills;
+    [SerializeField] GameObject tankSkills;
+    [SerializeField] GameObject supportSkills;
     GameObject Player;
     UI ui;
+    bool enoughXP = false;
 
 
     void Start()
@@ -22,6 +23,7 @@ public class SkillTree : MonoBehaviour
     public void PanelActivate(bool input)
     {
         treePanel.SetActive(input);
+
     }
 
     public void SetSkillName(string inputN)
@@ -55,9 +57,11 @@ public class SkillTree : MonoBehaviour
             {
                Player.GetComponent<SpeedsterAbilities>().LevelSkill(skillName);
             }
+            enoughXP = true;
         }
         else
         {
+            enoughXP = false;
             Debug.Log("Not Enough XP!");
         }
         ui.UpdateXP();
@@ -85,26 +89,23 @@ public class SkillTree : MonoBehaviour
 
     public void SetClass()
     {
-        if (Class == "TankPlayer(Clone)")
-        {
-            for (int i = 0; i < tankSkills.Length; i++)
-            { tankSkills[i].SetActive(true); }
-        }
-        if (Class == "SniperPlayer(Clone)")
-        {
-            for (int i = 0; i < sniperSkills.Length; i++)
-            { sniperSkills[i].SetActive(true); }
-        }
-        if (Class == "SupportPlayer(Clone)")
-        {
-            for (int i = 0; i < supportSkills.Length; i++)
-            { supportSkills[i].SetActive(true); }
-        }
-        if (Class == "SpeedsterPlayer(Clone)")
-        {
-            for (int i = 0; i < speedsterSkills.Length; i++)
-            { speedsterSkills[i].SetActive(true); }
-        }
+            if (Class == "TankPlayer(Clone)")      
+            {
+                tankSkills.SetActive(true);
+            }
+            if (Class == "SniperPlayer(Clone)")
+            {
+                sniperSkills.SetActive(true);
+            }
+            if (Class == "SupportPlayer(Clone)")
+            {
+                supportSkills.SetActive(true);
+            }
+            if (Class == "SpeedsterPlayer(Clone)")
+            {
+                speedsterSkills.SetActive(true);
+            }
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -117,20 +118,28 @@ public class SkillTree : MonoBehaviour
             MouseClamp(false);
             PanelActivate(true);
             SetClass();
-            
         }
     }
-        
+
+
+
     void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.gameObject.transform.parent.name);
         if (other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)")
         {
             LockAbility(true);
             MouseClamp(true);
-            PanelActivate(false);            
+            PanelActivate(false);
         }
     }
 
-    
+    public bool GetEnoughXP()
+    {
+        return enoughXP;
+    }
+
+    public void updateEnoughXP(bool input)
+    {
+        enoughXP = input;
+    }
 }

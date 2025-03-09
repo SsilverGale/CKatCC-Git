@@ -92,7 +92,6 @@ public class EnemyHealth : MonoBehaviour
     public void HurtEnemy()
     {
         hp -= reduceHealth;
-        Debug.Log(hp);
     }
 
     IEnumerator LauncherDamageCooldown()

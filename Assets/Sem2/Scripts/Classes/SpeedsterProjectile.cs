@@ -6,7 +6,7 @@ public class SpeedsterProjectile : MonoBehaviour
 {
     Vector3 TargetPos;
     Rigidbody rb;
-    float speed = 35f;
+    float speed = 55f;
     Transform Camera;
     Transform Player;
     CapsuleCollider collider;
@@ -14,18 +14,18 @@ public class SpeedsterProjectile : MonoBehaviour
     float dmgAmp = 1;
     float blltVelo = 1;
 
+    SpeedsterAbilities SA;
+
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<CapsuleCollider>();
         Player = GameObject.FindWithTag("Player").transform;
-        //dmgAmp = Player.GetComponent<SniperAbilities>().ReturnAmp();
-        //blltVelo = Player.GetComponent<SniperAbilities>().ReturnVelocity();
+        SA = GameObject.FindWithTag("Player").GetComponent<SpeedsterAbilities>();
         rb = GetComponent<Rigidbody>();
         Camera = GameObject.FindWithTag("MainCamera").transform;
-        Ray ray = new Ray(Player.position, Camera.forward);
-        rb.AddForce(ray.direction * speed * blltVelo, ForceMode.Impulse);
-        transform.rotation = Quaternion.LookRotation(ray.direction) * new Quaternion(90, 0, 0, 90);
+        rb.AddForce((SA.ReturnRayHit() - Player.transform.position).normalized * speed * blltVelo, ForceMode.Impulse);
+        transform.rotation = Quaternion.LookRotation(SA.ReturnRayHit());
     }
 
     //destroys object on collision other than other players

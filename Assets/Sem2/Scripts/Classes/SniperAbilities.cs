@@ -186,6 +186,14 @@ public class SniperAbilities : MonoBehaviour
         {
             critDMG += 0.03f;
         }
+        if (input == "FIREARW")
+        {
+            enableFire = true;
+        }
+        if (input == "POISONARW")
+        {
+            enablePoison = true;
+        }
     }
 
     public float ReturnCritModifier()

@@ -30,6 +30,7 @@ TagManager:
   - HotdogEnemy
   - FIHS
   - XPHolder
+  - Shop
   layers:
   - Default
   - TransparentFX

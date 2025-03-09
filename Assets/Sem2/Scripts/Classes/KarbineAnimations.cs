@@ -18,12 +18,24 @@ public class KarbineAnimations : MonoBehaviour
         animator.SetBool("IsShoot", true);
         animator2.SetBool("IsShoot", true);
         Invoke("StopShoot", 0.05f);      
-        Invoke("StopShoot", 0.05f);
     }
 
     public void StopShoot()
     {
         animator.SetBool("IsShoot", false);
         animator2.SetBool("IsShoot", false);
+    }
+
+    public void StartReload()
+    {
+        animator.SetBool("IsReload", true);
+        animator2.SetBool("IsReload", true);
+        Invoke("EndReload", 1.5f);
+    }
+
+    public void EndReload()
+    {
+        animator.SetBool("IsReload", false);
+        animator2.SetBool("IsReload", false);
     }
 }
