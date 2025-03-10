@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     //calling stats from PlayerStats
     [SerializeField] float pHealth = PlayerStats.pHealth;
+    float maxHP;
     float reduceHealth;
 
     bool isInvincible;
@@ -17,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     bool hit = false;
     void Start()
     {
-        pHealth = 100f;
+        maxHP = pHealth;
         isInvincible = false;
     }
 
@@ -34,6 +35,10 @@ public class PlayerHealth : MonoBehaviour
         if (pHealth <= 0)
         {
             isDowned = true;
+        }
+        if (pHealth >= maxHP) 
+        {
+            pHealth = maxHP;
         }
     }
 
@@ -101,5 +106,10 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateMaxHP(float input)
     {
         pHealth = input;
+    }
+    
+    public float GetMaxHP()
+    {
+        return maxHP;
     }
 }

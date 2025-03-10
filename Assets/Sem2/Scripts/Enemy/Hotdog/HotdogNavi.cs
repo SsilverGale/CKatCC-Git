@@ -59,6 +59,15 @@ public class HotdogNavi : MonoBehaviour
 
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "BearTrap")
+        {
+            StopMotion();
+            Invoke("FinishAttack", 2f);
+        }
+    }
+
     //after attack is finished re enables nav mesh and burger attack goes off cooldown
     public void FinishAttack()
     {

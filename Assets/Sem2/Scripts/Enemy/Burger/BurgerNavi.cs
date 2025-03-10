@@ -72,6 +72,15 @@ public class BurgerNavi : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = true;
     }
 
+     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "BearTrap")
+        {
+            StopMotion();
+            Invoke("FinishAttack", 2f);
+        }
+    }
+
     public void DefenceObjectiveSet(bool condition)
     {
         //plan to enable/disable different attack ranges for different things when defence is up

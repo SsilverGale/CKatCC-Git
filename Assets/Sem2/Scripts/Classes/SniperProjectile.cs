@@ -31,7 +31,7 @@ public class SniperProjectile : MonoBehaviour
         Camera = GameObject.FindWithTag("MainCamera").transform;
         Ray ray = new Ray(Player.position, Camera.forward);
         rb.AddForce(ray.direction * (speed * SA.getHoldDown()), ForceMode.Impulse);
-        transform.rotation = Quaternion.LookRotation(ray.direction) * new Quaternion(90, 0, 0, 90);
+        transform.rotation = Quaternion.LookRotation(Player.transform.forward) * new Quaternion(-90, 0 , 0, 90);
     }
 
     //destroys object on collision other than other players

@@ -26,6 +26,7 @@ public class PopcornNav : MonoBehaviour
 
     void Start()
     {
+        transform.tag = "Burger";
         PA = GetComponent<PopcornAnimations>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         //connects navmesh component
@@ -34,6 +35,7 @@ public class PopcornNav : MonoBehaviour
 
     void Update()
     {
+        
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -56,6 +58,7 @@ public class PopcornNav : MonoBehaviour
     public void StopMotion()
     {
         PA.StopWalk();
+        transform.tag = "BurgerEnemy";
         //Debug.Log("Stopping Motion");
         isAttacking = true;
         isNavmeshActive = false;
@@ -67,6 +70,7 @@ public class PopcornNav : MonoBehaviour
     public void FinishAttack()
     {
         Debug.Log("Attack Finished");
+        transform.tag = "Burger";
         isNavmeshActive = true;
         isAttacking = false;
         PA.PlayWalk();
@@ -76,5 +80,14 @@ public class PopcornNav : MonoBehaviour
     {
         //plan to enable/disable different attack ranges for different things when defence is up
         isDefenceActive = condition;
+    }
+
+     void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "BearTrap")
+        {
+            StopMotion();
+            Invoke("FinishAttack", 2f);
+        }
     }
 }
