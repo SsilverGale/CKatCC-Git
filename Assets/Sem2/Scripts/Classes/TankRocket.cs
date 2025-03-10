@@ -19,7 +19,7 @@ public class TankRocket : MonoBehaviour
         Camera = GameObject.FindWithTag("MainCamera").transform;
         Ray ray = new Ray(Player.position,Camera.forward);
         rb.AddForce(ray.direction * speed, ForceMode.Impulse);
-        transform.rotation = Quaternion.LookRotation(ray.direction) * new Quaternion(90,0,0,90);
+        transform.rotation = Quaternion.LookRotation(ray.direction) * new Quaternion(270,0,0,0);
         //Debug.Log(ray);
     }
 
