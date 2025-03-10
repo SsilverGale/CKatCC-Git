@@ -59,9 +59,9 @@ public class HotdogNavi : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "BearTrap")
+        if (collision.gameObject.tag == "BearTrap")
         {
             StopMotion();
             Invoke("FinishAttack", 2f);
