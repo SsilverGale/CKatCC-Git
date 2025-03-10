@@ -23,6 +23,7 @@ public class TankAbilities : MonoBehaviour
     bool enableShoot = true;
     UI ui;
     int bigFormHP = 300;
+    bool enableShrink = false;
     
 
     void Start()
@@ -55,15 +56,17 @@ public class TankAbilities : MonoBehaviour
             {
                 if (isBig)
                 {
-                    GetComponent<PlayerHealth>().UpdateMaxHP(bigFormHP);
-                    gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
+                    GetComponent<PlayerHealth>().UpdateMaxHP(125);
+                    
                     shrinking = true;
                     Camera.transform.position -= new Vector3(0.1f, 1.8f, 2);
+                    Invoke("Shrink", 8);
                 }
                 if (!isBig)
                 {
-                    GetComponent<PlayerHealth>().UpdateMaxHP(125);
-                    gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
+                    
+                    GetComponent<PlayerHealth>().UpdateMaxHP(bigFormHP);
+                    
                     growing = true;
                     Camera.transform.position += new Vector3(0.1f, 1.8f, 2);
                 }
@@ -142,10 +145,12 @@ public class TankAbilities : MonoBehaviour
     public void Swing()
     {
         TSA.PlaySwingAni();
+        gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
     }
     public void StopSwing()
     {
         TSA.StopSwingAni();
+        gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -197,5 +202,17 @@ public class TankAbilities : MonoBehaviour
         {
             gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().transform.localScale  *= 1.5f;
         }
+    }
+
+    public void Shrink()
+    {
+        if (isBig)
+        {
+            GetComponent<PlayerHealth>().UpdateMaxHP(bigFormHP);
+            gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
+            shrinking = true;
+            Camera.transform.position -= new Vector3(0.1f, 1.8f, 2);
+        }
+        
     }
 }

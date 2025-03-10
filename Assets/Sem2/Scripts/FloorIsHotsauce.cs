@@ -26,8 +26,9 @@ public class FloorIsHotsauce : MonoBehaviour
         if (transform.position.y <= -6)
         {
             isSinking = false;
+            gameObject.SetActive(false);
         }
-        if (Time.time - capturedTime >= 5f && isRising)
+        if (Time.time - capturedTime >= 10f && isRising)
         {
             isRising = false;
             StartCoroutine(EnableSink());
@@ -37,6 +38,7 @@ public class FloorIsHotsauce : MonoBehaviour
     public void StartRise()
     {
         Debug.Log("Floor is Hot Sauce!!!");
+        gameObject.SetActive(true);
         StartCoroutine(EnableRise());
         capturedTime = Time.time;
     }

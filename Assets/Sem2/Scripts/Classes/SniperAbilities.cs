@@ -113,7 +113,7 @@ public class SniperAbilities : MonoBehaviour
         {
             projectileCycle++;
         }
-        if (enableFire || projectileCycle == 2) 
+        if (enableFire && projectileCycle == 2 && !enablePoison) 
         {
             projectileCycle = 0;
         }

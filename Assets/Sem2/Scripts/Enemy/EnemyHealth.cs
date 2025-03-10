@@ -65,12 +65,13 @@ public class EnemyHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher" && enableLauncherDamage))
+        if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher" && enableLauncherDamage) || collision.gameObject.tag == "BearTrap")
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
             HurtEnemy();
             if (collision.gameObject.tag == "Launcher")
             {
+                
                 StartCoroutine(LauncherDamageCooldown());
             }
             if (collision.name == "SniperProjectilePoison")

@@ -81,7 +81,7 @@ public class UI : MonoBehaviour
         }
         if (isClick) 
         {
-            slider.value = hp.getHp() / 100;
+            slider.value = hp.getHp() / hp.GetMaxHP();
         }
            
         if (MustardCount >= (maxAmmo - currentAmmo))
