@@ -12,7 +12,7 @@ public class SpeedsterAbilities : MonoBehaviour
     Transform cam;
     [SerializeField] Transform weaponTip;
     [SerializeField] Transform weaponTip2;
-    private bool enableShoot;
+    [SerializeField] private bool enableShoot;
     bool canDoubleJump = false;
     bool isGrounded = true;
     Rigidbody rb;
@@ -43,14 +43,20 @@ public class SpeedsterAbilities : MonoBehaviour
 
     void Update()
     {
-        if (enableShoot == true && Input.GetMouseButton(0) && ui.returnAmmo() != 0)
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            KA.StartShoot();
-            Instantiate(speedsterProjectile, weaponTip.position, Quaternion.identity);
-            Instantiate(speedsterProjectile, weaponTip2.position, Quaternion.identity);
-            SoundManager.PlaySound(SoundType.SPSHOOT);
-            ui.decreaseAmmo(2);
-            StartCoroutine(Cooldown());
+            KA.StartReload();
+            enableShoot = false;
+            StartCoroutine(Reload());
+        }
+        if (Input.GetMouseButton(0) && ui.returnAmmo() != 0 && enableShoot)
+        {
+                KA.StartShoot();
+                Instantiate(speedsterProjectile, weaponTip.position, Quaternion.identity);
+                Instantiate(speedsterProjectile, weaponTip2.position, Quaternion.identity);
+                SoundManager.PlaySound(SoundType.SPSHOOT);
+                ui.decreaseAmmo(2);
+                StartCoroutine(Cooldown());
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -62,12 +68,7 @@ public class SpeedsterAbilities : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canDoubleJump = false;
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            KA.StartReload();
-            enableShoot = false;
-            StartCoroutine(Reload());
-        }
+        
         
         if (enableRegen)
         {
@@ -190,4 +191,6 @@ public class SpeedsterAbilities : MonoBehaviour
     {
         return rayHit;
     }
+
+   
 }

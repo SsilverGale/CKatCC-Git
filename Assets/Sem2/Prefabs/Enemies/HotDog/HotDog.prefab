@@ -427,6 +427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotdog3
       objectReference: {fileID: 0}
+    - target: {fileID: 7205140776170859923, guid: ba92965e052c08a47919edff88abfcc0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 89780cd343f2f7f4b80e8bee0dd21a72, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -234,4 +234,6 @@ public class SniperAbilities : MonoBehaviour
     {
         return critDMG; 
     }
+
+    
 }

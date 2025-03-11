@@ -19,6 +19,7 @@ public class SkillTree : MonoBehaviour
     void Start()
     {
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
     public void PanelActivate(bool input)
     {
@@ -114,7 +115,6 @@ public class SkillTree : MonoBehaviour
         {
             LockAbility(false);
             Class = other.gameObject.transform.parent.name;
-            Player = other.gameObject;
             MouseClamp(false);
             PanelActivate(true);
             SetClass();

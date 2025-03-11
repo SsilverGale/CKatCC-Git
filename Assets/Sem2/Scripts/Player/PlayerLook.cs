@@ -22,27 +22,26 @@ public class PlayerLook : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if(!hp.GetIsDowned())
+        if (!hp.GetIsDowned())
         {
-        if (Input.GetMouseButton(0) && firstTime) 
-        {
+            if (Input.GetMouseButton(0) && firstTime)
+            {
                 Cursor.lockState = CursorLockMode.Locked;
                 firstTime = false;
-        }
-        //tracks the movement of the mouse
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 250 * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * 250 * Time.deltaTime;
+            }
+            //tracks the movement of the mouse
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * 250 * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * 250 * Time.deltaTime;
 
-        //keeps track of the player's current rotation
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            //keeps track of the player's current rotation
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //rotates the player model based on what direction the player is looking
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+            //rotates the player model based on what direction the player is looking
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            playerBody.Rotate(Vector3.up * mouseX);
         }
     }
 
