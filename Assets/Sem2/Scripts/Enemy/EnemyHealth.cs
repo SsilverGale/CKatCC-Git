@@ -12,12 +12,15 @@ public class EnemyHealth : MonoBehaviour
     float captureTime = 0;
     bool enableFire = false;
     XP xp;
+    UI ui;
 
     float fireDMG;
 
+    Color temp;
 
     void Start()
     {
+        ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         xp = GameObject.FindGameObjectWithTag("XPHolder").GetComponent<XP>();
     }
 
@@ -93,6 +96,39 @@ public class EnemyHealth : MonoBehaviour
     public void HurtEnemy()
     {
         hp -= reduceHealth;
+        ui.HitMarker();
+        if (transform.name =="Borgir(Clone)" || transform.name == "BorgirBoss(Clone)")
+        {
+            transform.GetChild(0).GetChild(3).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
+            Invoke("RevertColor", 0.1f);
+        }
+        if (transform.name == "HotDog(Clone)" || transform.name == "HotDogBoss(Clone)")
+        {
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
+            Invoke("RevertColor", 0.1f);
+        }
+        if (transform.name == "Popcorn Variant(Clone)" || transform.name == "PopcornBoss(Clone)")
+        {
+            transform.GetChild(2).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
+            Invoke("RevertColor", 0.1f);
+        }
+
+    }
+
+    public void RevertColor()
+    {
+        if (transform.name == "Borgir(Clone)" || transform.name == "BorgirBoss(Clone)")
+        {
+            transform.GetChild(0).GetChild(3).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(1,1,1,1));
+        }
+        if (transform.name == "HotDog(Clone)" || transform.name == "HotDogBoss(Clone)")
+        {
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(1,1,1,1));
+        }
+        if (transform.name == "Popcorn Variant(Clone)" || transform.name == "PopcornBoss(Clone)")
+        {
+            transform.GetChild(2).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(1,1,1,1));
+        }
     }
 
     IEnumerator LauncherDamageCooldown()

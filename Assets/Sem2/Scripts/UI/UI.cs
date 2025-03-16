@@ -22,6 +22,7 @@ public class UI : MonoBehaviour
     [SerializeField] Button[] speedsterButtons;
     [SerializeField] Button shift;
     [SerializeField] Button E;
+    [SerializeField] GameObject hitMarker;
     PlayerHealth hp;
     PlayerXP xp;
     WaveSpawn waveSpawn;
@@ -162,6 +163,7 @@ public class UI : MonoBehaviour
     {
         Holder.GetComponent<RawImage>().texture = Ketchup;
         shift = speedsterButtons[0];
+        E = speedsterButtons[1];
         classAbilityUI[0].SetActive(true);
         maxAmmo = 350;
         Class = "Ketchup";
@@ -173,6 +175,7 @@ public class UI : MonoBehaviour
     {
         Holder.GetComponent<RawImage>().texture = Mustard;
         shift = tankButtons[0];
+        E = tankButtons[1];
         abilityShiftActive = true;
         shiftEnabled = true;
         SetShift(true);
@@ -245,5 +248,16 @@ public class UI : MonoBehaviour
     public void UpdateDash(int input)
     {
         dashCount += input;
+    }
+
+    public void HitMarker()
+    {
+        hitMarker.SetActive(true);
+        Invoke("DisableHitMarker", 0.3f);
+    }
+
+    public void DisableHitMarker()
+    {
+        hitMarker.SetActive(false);
     }
 }

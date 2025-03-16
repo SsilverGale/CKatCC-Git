@@ -24,6 +24,7 @@ public class TankAbilities : MonoBehaviour
     UI ui;
     int bigFormHP = 300;
     bool enableShrink = false;
+    bool enableSelfHeal = false;
     
 
     void Start()
@@ -106,6 +107,15 @@ public class TankAbilities : MonoBehaviour
             TSA.PlayReload();
             StartCoroutine(Reload());
         }
+        if (Input.GetKeyDown(KeyCode.E) && enableSelfHeal)
+        {
+            enableSelfHeal = false;
+            for (int i = 0; i < 75; i ++)
+            {
+                GetComponent<PlayerHealth>().IncrementHealth(1);
+            }
+            StartCoroutine(SelfHealCooldown());
+        }
 
         //grows player
         if (growing && PlayerTransform.transform.localScale.x <= 3) 
@@ -182,6 +192,13 @@ public class TankAbilities : MonoBehaviour
         enableShoot = true;
     }
 
+    IEnumerator SelfHealCooldown()
+    {
+        
+        yield return new WaitForSeconds(18);
+        enableSelfHeal = true;
+    }
+
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(4);
@@ -201,6 +218,26 @@ public class TankAbilities : MonoBehaviour
         if (input == "MLESIZE")
         {
             gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().transform.localScale  *= 1.5f;
+        }
+        if (input == "THORNS")
+        {
+
+        }
+        if (input == "DMGAURA")
+        {
+
+        }
+        if (input == "AURADMG+")
+        {
+
+        }
+        if (input == "SLFHEAL")
+        {
+
+        }
+        if (input == "HEAL+")
+        {
+
         }
     }
 
