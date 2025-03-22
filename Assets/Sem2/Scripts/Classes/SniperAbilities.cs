@@ -50,20 +50,21 @@ public class SniperAbilities : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pH.GetIsDowned() == false)
+        if (pH.GetIsDowned() == false)  
         {
-            if (Input.GetMouseButtonDown(0) && enableShoot)
+            
+            if (Input.GetMouseButtonDown(0) && enableShoot )
             {
                 capturedTime = Time.time;
                 SBA.DrawString();
             }
             if (Input.GetMouseButtonUp(0) && enableShoot)
             {
-                SBA.Shoot();
+                StartCoroutine(Cooldown());                
                 chargeTime = Time.time - capturedTime;
                 SoundManager.PlaySound(SoundType.SNSHOOT);
                 Instantiate(currentProjectile, weaponTip.position, Quaternion.identity);
-                Cooldown();
+                SBA.Shoot();
             }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -94,10 +95,13 @@ public class SniperAbilities : MonoBehaviour
     }
 
     //cooldown funciton to disable shooting and to enable shooting 1sec later
-    public void Cooldown()
+    IEnumerator Cooldown()
     {
         enableShoot = false;
-        Invoke("EnableShoot", 1.5f);
+        GetComponent<SniperAbilities>().enabled = false;
+        yield return new WaitForSeconds(0.912f);
+        GetComponent<SniperAbilities>().enabled = true;
+        enableShoot = true;
     }
 
     //function to enable shooting from cooldown function

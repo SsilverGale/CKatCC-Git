@@ -22,11 +22,14 @@ public class HotdogNavi : MonoBehaviour
 
     Transform ObjectiveTransform;
 
+    HotdogAnimations HA;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         //connects navmesh component
         agent = GetComponent<NavMeshAgent>();
+        HA = GetComponent<HotdogAnimations>();
     }
 
     void Update()
@@ -40,17 +43,24 @@ public class HotdogNavi : MonoBehaviour
             //movement towards player
             //Debug.Log("tracking");
             agent.SetDestination(player.GetComponentInParent<Transform>().position);
+            HA.PlayWalk();
         }
         if (isDefenceActive)
         {
             agent.SetDestination(ObjectiveTransform.position);
         }
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+        if (isAttacking)
+        {
+            transform.LookAt(player.transform.position);
+        }
     }
 
     //stopping movment before jumping
     public void StopMotion()
     {
+        HA.StopWalk();
+        HA.Attack();
         //Debug.Log("Stopping Motion");
         isAttacking = true;
         isNavmeshActive = false;
@@ -72,6 +82,7 @@ public class HotdogNavi : MonoBehaviour
     public void FinishAttack()
     {
         //Debug.Log("Attack Finished");
+        HA.PlayWalk();
         isAttacking = false;
         isNavmeshActive = true;
         GetComponent<NavMeshAgent>().enabled = true;

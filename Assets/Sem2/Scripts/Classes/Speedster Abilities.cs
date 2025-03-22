@@ -21,7 +21,7 @@ public class SpeedsterAbilities : MonoBehaviour
     KarbineAnimations KA;
     bool enableRegen = false;
     bool enableDash = false;
-    bool enableDoubleJump = false;
+    [SerializeField] bool enableDoubleJump = false;
     float dashForce = 5500;
     [SerializeField] int dashCount = 0;
     int maxDashCount = 0;

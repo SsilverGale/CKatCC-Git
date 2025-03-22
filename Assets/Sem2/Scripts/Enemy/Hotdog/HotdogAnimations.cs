@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurgerAnimations : MonoBehaviour
+public class HotdogAnimations : MonoBehaviour
 {
     Animator animator;
 
@@ -14,7 +14,7 @@ public class BurgerAnimations : MonoBehaviour
 
     public void PlayWalk()
     {
-        animator.SetBool("IsWalking",true);
+        animator.SetBool("IsWalking", true);
         animator.SetBool("IsIdle", false);
     }
 
@@ -24,15 +24,16 @@ public class BurgerAnimations : MonoBehaviour
         animator.SetBool("IsIdle", true);
     }
 
-    public void JumpWind(bool input)
+    public void Attack()
     {
-        animator.SetBool ("Jump", input);
-        Invoke("StopJump",3.5f);
+        animator.SetBool("IsAttacking", true);
+        Invoke("StopAttack",3.5f);
     }
 
-    public void StopJump()
+
+    public void StopAttack()
     {
-        animator.SetBool("Jump", false);
+        animator.SetBool("IsAttacking", false);
     }
 
 }
