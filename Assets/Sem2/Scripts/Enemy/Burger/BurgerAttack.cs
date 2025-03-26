@@ -32,6 +32,7 @@ public class BurgerAttack : MonoBehaviour
     // attack function by getting player position and invoking an attack
     public void Attack()
     {
+        
         playerTrans = player.transform;
         Invoke("Jump",1.5f);
     }

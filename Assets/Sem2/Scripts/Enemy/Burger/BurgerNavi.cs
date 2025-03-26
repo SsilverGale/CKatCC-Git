@@ -54,6 +54,7 @@ public class BurgerNavi : MonoBehaviour
     //stopping movment before jumping
     public void StopMotion()
     {
+        BA.JumpWind(true);
         BA.StopWalk();
         isAttacking = true;
         agent.SetDestination(transform.position);
