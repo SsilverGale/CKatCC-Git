@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 3570073072843687979}
   - component: {fileID: 3458796082550397009}
   - component: {fileID: 7602789903171903796}
+  - component: {fileID: 7718637470081491838}
   m_Layer: 0
   m_Name: HotDogBoss
   m_TagString: HotdogEnemy
@@ -376,6 +377,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e652725cbc18b4e9d4af0ab2c57fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7718637470081491838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625098668538162390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568a8c0bf253c4f42b1265f8c2e14c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4067534306527681620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -443,8 +456,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ba92965e052c08a47919edff88abfcc0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 176989377157934500}
   m_SourcePrefab: {fileID: 100100000, guid: ba92965e052c08a47919edff88abfcc0, type: 3}
+--- !u!1 &3797556169610961157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ba92965e052c08a47919edff88abfcc0, type: 3}
+  m_PrefabInstance: {fileID: 4067534306527681620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &176989377157934500
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797556169610961157}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff5abd2df0c61ad429a1693607a84541, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &4609559132686613439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ba92965e052c08a47919edff88abfcc0, type: 3}

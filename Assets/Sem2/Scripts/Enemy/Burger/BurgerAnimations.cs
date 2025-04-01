@@ -23,4 +23,16 @@ public class BurgerAnimations : MonoBehaviour
         animator.SetBool("IsWalking", false);
         animator.SetBool("IsIdle", true);
     }
+
+    public void JumpWind(bool input)
+    {
+        animator.SetBool ("Jump", input);
+        Invoke("StopJump",3.5f);
+    }
+
+    public void StopJump()
+    {
+        animator.SetBool("Jump", false);
+    }
+
 }

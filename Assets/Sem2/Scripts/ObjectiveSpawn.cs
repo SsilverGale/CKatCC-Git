@@ -26,32 +26,11 @@ public class ObjectiveSpawn : MonoBehaviour
             FIHS.StartRise();
         }
         //Mini boss
-        if (random == 2)
+        if (random == 1)
         {
             Debug.Log("Enemy Empowered!");
             WS.MinibossEmpower();
         }
-        //Defend
-        if (random == 1) 
-        {
-            Debug.Log("Defend!");
-            int random2 = Random.Range(0,DefenceObjectiveSpawnpoints.Length);
-            Instantiate(DefenceObjectivePrefab, DefenceObjectiveSpawnpoints[random2].position, Quaternion.identity);
-            GameObject[] temp = GameObject.FindGameObjectsWithTag("BurgerEnemy");
-            foreach (GameObject gameObject in temp) 
-            {
-                gameObject.GetComponent<BurgerNavi>().DefenceObjectiveSet(true);
-            }
-            temp = GameObject.FindGameObjectsWithTag("HotdogEnemy");
-            foreach (GameObject gameObject in temp)
-            {
-                gameObject.GetComponent<HotdogNavi>().DefenceObjectiveSet(true);
-            }
-            temp = GameObject.FindGameObjectsWithTag("PopcornEnemy");
-            foreach (GameObject gameObject in temp)
-            {
-                gameObject.GetComponent<PopcornNav>().DefenceObjectiveSet(true);
-            }
-        }
     }
+
 }

@@ -21,6 +21,14 @@ public class SkillTree : MonoBehaviour
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         Player = GameObject.FindGameObjectWithTag("Player");
     }
+
+    private void Update()
+    {
+        if(Player == null) 
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+        }
+    }
     public void PanelActivate(bool input)
     {
         treePanel.SetActive(input);
@@ -114,7 +122,7 @@ public class SkillTree : MonoBehaviour
         if (other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)")
         {
             LockAbility(false);
-            Class = other.gameObject.transform.parent.name;
+            Class = Player.transform.parent.name;
             MouseClamp(false);
             PanelActivate(true);
             SetClass();

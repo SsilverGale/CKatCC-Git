@@ -28,4 +28,10 @@ public class SniperBowAnimations : MonoBehaviour
     {
         animator.SetBool("IsShoot", false);
     }
+
+    public void Tap()
+    {
+        animator.SetBool("Tap",true);
+        animator.SetBool("Tap", false);
+    }
 }
