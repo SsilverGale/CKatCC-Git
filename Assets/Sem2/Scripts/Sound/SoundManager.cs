@@ -11,6 +11,14 @@ public enum SoundType
     TSWING,
     HURT,
     TANKRELOAD,
+    STEP,
+    SPDRELOAD,
+    BRGATK,
+    BTN,
+    DS,
+    HM,
+    HDA,
+    XPLODE,
 }
 
 

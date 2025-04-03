@@ -49,10 +49,13 @@ public class PlayerMove : NetworkBehaviour
             dashTime = 0;
             isDashing = true;
         }
+        
     }
 
     void FixedUpdate()
     {
+        _moveDirection = new Vector3(moveInput.x * walkSpeed, rb.velocity.y, moveInput.y * walkSpeed);
+        rb.velocity = transform.TransformDirection(_moveDirection);
         if (GetComponent<SpeedsterAbilities>().ReturnDashCount() > 0 && GetComponent<SpeedsterAbilities>().ReturnCanDash() && transform.parent.name == "SpeedsterPlayer(Clone)")
         {
             Debug.Log("Function runs");
@@ -80,11 +83,8 @@ public class PlayerMove : NetworkBehaviour
             }
             
         }
-        else
-        {
-            _moveDirection = new Vector3(moveInput.x * walkSpeed, rb.velocity.y, moveInput.y * walkSpeed);
-            rb.velocity = transform.TransformDirection(_moveDirection);
-        }
+        
+
     }
 
     /*checks which inputs the player has pressed and moves them accordingly

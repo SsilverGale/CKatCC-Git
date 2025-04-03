@@ -9959,6 +9959,10 @@ PrefabInstance:
       value: 0.00001
       objectReference: {fileID: 0}
     - target: {fileID: 345417541817169933, guid: 6fd97203e09def34a9f7228238eda688, type: 3}
+      propertyPath: dashForceX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 345417541817169933, guid: 6fd97203e09def34a9f7228238eda688, type: 3}
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 0}

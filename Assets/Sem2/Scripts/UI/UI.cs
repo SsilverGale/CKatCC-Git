@@ -83,20 +83,7 @@ public class UI : MonoBehaviour
         if (isClick) 
         {
             slider.value = hp.getHp() / hp.GetMaxHP();
-        }
-           
-        if (MustardCount >= (maxAmmo - currentAmmo))
-        {
-            MustardReload = false;
-            MustardCount = 0;
-        }
-        if (MustardReload)
-        {
-            MustardCount++;
-            SoundManager.PlaySound(SoundType.TANKRELOAD);
-            MustardReload = false;
-            StartCoroutine(WaitSound());
-        }
+        }          
         if (isClick)
         {
             Ammotext.text = "Ammo: " + currentAmmo.ToString() + "/" + maxAmmo.ToString();
@@ -107,6 +94,7 @@ public class UI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R) || currentAmmo == 0)
             {
                 StartCoroutine(Reload(time));
+                MustardReload = true;
             }
         }
 
@@ -139,7 +127,18 @@ public class UI : MonoBehaviour
         {
            dashText.text = dashCount.ToString();
         }
-
+        if (MustardReload && (MustardCount + currentAmmo) < maxAmmo)
+        {
+            SoundManager.PlaySound(SoundType.TANKRELOAD);
+            currentAmmo++;
+            MustardCount++;
+            MustardReload = false;
+            StartCoroutine(WaitSound());
+        }
+        if (MustardCount > maxAmmo)
+        {
+            MustardCount = 0;
+        }
     }
 
     public void UpdateXP()
@@ -193,17 +192,13 @@ public class UI : MonoBehaviour
     {   
         if (Class == "Mustard")
         {
-            MustardReload = true;
-            currentAmmo++;
-            yield return new WaitForSeconds((maxAmmo - currentAmmo) * time);
-            MustardReload = false;
+            yield return new WaitForSeconds((maxAmmo - currentAmmo) * time);       
         }
         else
         {
             yield return new WaitForSeconds(time);
-            currentAmmo = maxAmmo;
         }
-        
+        currentAmmo = maxAmmo;
     }
 
     public int returnAmmo()

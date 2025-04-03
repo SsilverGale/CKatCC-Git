@@ -104,7 +104,7 @@ public class TankAbilities : MonoBehaviour
                 SoundManager.PlaySound(SoundType.JUMP);
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) || ui.returnAmmo() == 0)
+        if (Input.GetKeyDown(KeyCode.R) || ui.returnAmmo() == 0 && ui.returnAmmo() < 6)
         {
             enableShoot = false;
             TSA.PlayReload();

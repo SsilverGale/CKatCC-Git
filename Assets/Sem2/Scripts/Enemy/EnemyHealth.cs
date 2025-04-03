@@ -48,6 +48,7 @@ public class EnemyHealth : MonoBehaviour
         }
         if (hp < 0 && !first) 
         {
+            SoundManager.PlaySound(SoundType.DS);
             Vector3 backDirection = -transform.forward;
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             
