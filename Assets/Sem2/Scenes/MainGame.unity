@@ -474,6 +474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate 1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4369449079911529920, guid: bdf153711e879364b9c5d1bc5b083095, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4509,6 +4513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6829,6 +6837,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7860,6 +7872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Haybale (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8235,6 +8251,10 @@ PrefabInstance:
     - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
       propertyPath: m_Name
       value: Haybale (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12198,6 +12218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Haybale
       objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12456,6 +12480,11 @@ MonoBehaviour:
   E: {fileID: 0}
   hitMarker: {fileID: 1484363931}
   dashText: {fileID: 1796139031}
+  maxDashCount: 0
+  dashReload: 0
+  shiftEnabled: 0
+  abilityShiftActive: 0
+  popup: {fileID: 1462707662}
 --- !u!114 &540222105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12531,12 +12560,13 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1462707663}
   - {fileID: 1044023426}
-  - {fileID: 1558525681}
   - {fileID: 208940376}
   - {fileID: 4744446}
   - {fileID: 765961102}
   - {fileID: 1461840932}
+  - {fileID: 1558525681}
   m_Father: {fileID: 927983037}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -16045,6 +16075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Haybale (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17214,6 +17248,10 @@ PrefabInstance:
     - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
       propertyPath: m_Name
       value: House CKatCC (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19896,6 +19934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hex tower CKatCC 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6759066819790827609, guid: ba08f65de8d48904ebf808a62b206df1, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22497,6 +22539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CKATCC Tree 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6118352598593562492, guid: 61dd2ab2808e685449c4d84a6c011c30, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6891371548229352902, guid: 61dd2ab2808e685449c4d84a6c011c30, type: 3}
       propertyPath: m_LocalPosition.x
       value: 99.47601
@@ -23100,7 +23146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 305577480381226394, guid: 0179adb7a410a0843866413db59793a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 305577480381226394, guid: 0179adb7a410a0843866413db59793a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23137,6 +23183,10 @@ PrefabInstance:
     - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
       propertyPath: m_Name
       value: House CKatCC (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25163,6 +25213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25281,7 +25335,7 @@ Transform:
   m_GameObject: {fileID: 1060432009}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: -0, y: -0.14, z: 0}
+  m_LocalPosition: {x: -0, y: -0.009, z: 0}
   m_LocalScale: {x: 244.61873, y: 244.61873, z: 244.61873}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25844,6 +25898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26068,6 +26126,10 @@ PrefabInstance:
     - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
       propertyPath: m_Name
       value: Haybale (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27837,6 +27899,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29590,6 +29656,10 @@ PrefabInstance:
     - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
       propertyPath: m_Name
       value: Haybale (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31552,6 +31622,10 @@ PrefabInstance:
     - target: {fileID: 4369449079911529920, guid: bdf153711e879364b9c5d1bc5b083095, type: 3}
       propertyPath: m_Name
       value: Crate 1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369449079911529920, guid: bdf153711e879364b9c5d1bc5b083095, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33684,7 +33758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3ff82c38bdfd64a9c047ec00157622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalXP: 0
+  TotalXP: 300
 --- !u!1001 &1440036931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34125,6 +34199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Haybale (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34338,6 +34416,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461840931}
+  m_CullTransparentMesh: 1
+--- !u!1 &1462707662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1462707663}
+  - component: {fileID: 1462707665}
+  - component: {fileID: 1462707664}
+  m_Layer: 5
+  m_Name: Interact popup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1462707663
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462707662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 540222108}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -65.4}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1462707664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462707662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: F to interact
+--- !u!222 &1462707665
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462707662}
   m_CullTransparentMesh: 1
 --- !u!4 &1467542845 stripped
 Transform:
@@ -35155,6 +35312,10 @@ PrefabInstance:
     - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
       propertyPath: m_Name
       value: Haybale (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36598,7 +36759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 0.72156864}
+  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -36630,7 +36791,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558525678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36643,7 +36804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1561186038
@@ -37682,6 +37843,10 @@ PrefabInstance:
     - target: {fileID: 5163730065888372505, guid: dff9526303e694d44be621cfdbf86990, type: 3}
       propertyPath: m_Name
       value: Big_Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163730065888372505, guid: dff9526303e694d44be621cfdbf86990, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5540150532837457315, guid: dff9526303e694d44be621cfdbf86990, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40532,6 +40697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Haybale (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41135,6 +41304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41160,7 +41333,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.013, y: 0.029000001, z: 0.021000002}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.003, y: 0, z: 0.011000001}
   m_TimeToStationary: 0.5
@@ -42219,6 +42392,10 @@ PrefabInstance:
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e23ad9cb15186b042b74aff737810d71, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e23ad9cb15186b042b74aff737810d71, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
@@ -42245,6 +42422,10 @@ PrefabInstance:
     - target: {fileID: 2489159159464621496, guid: e23ad9cb15186b042b74aff737810d71, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550463727306718371, guid: e23ad9cb15186b042b74aff737810d71, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2550463727306718371, guid: e23ad9cb15186b042b74aff737810d71, type: 3}
       propertyPath: m_TagString
@@ -43643,6 +43824,10 @@ PrefabInstance:
     - target: {fileID: 1815237021879241334, guid: 882de4d774adb174d8d23cdd83f0a222, type: 3}
       propertyPath: m_Name
       value: Stall (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815237021879241334, guid: 882de4d774adb174d8d23cdd83f0a222, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -45998,7 +46183,7 @@ Transform:
   m_GameObject: {fileID: 1955176076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.347928, y: -7.121792, z: 94.86}
+  m_LocalPosition: {x: -3.4, y: -7.121792, z: 94.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48358,6 +48543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Haybale (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3007407120190954876, guid: 7b63d9ec1774f7e46b7396729915e20d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48965,6 +49154,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097306241}
   m_CullTransparentMesh: 1
+--- !u!1 &2102372625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102372629}
+  - component: {fileID: 2102372628}
+  - component: {fileID: 2102372627}
+  - component: {fileID: 2102372626}
+  m_Layer: 0
+  m_Name: Respawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2102372626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102372625}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2102372627
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102372625}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2102372628
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102372625}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2102372629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102372625}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.19034, y: -71.01109, z: 16.464746}
+  m_LocalScale: {x: 287.79193, y: 1, z: 287.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2109156358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6155429893902632875, guid: 19782c4b79c11f64ea8bc057d77479ab, type: 3}
@@ -49480,6 +49774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House CKatCC
       objectReference: {fileID: 0}
+    - target: {fileID: 1114202983979747104, guid: 0179adb7a410a0843866413db59793a4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49533,3 +49831,4 @@ SceneRoots:
   - {fileID: 1813976627}
   - {fileID: 1671647140}
   - {fileID: 2090581736}
+  - {fileID: 2102372629}

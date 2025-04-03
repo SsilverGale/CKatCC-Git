@@ -35,7 +35,10 @@ public class PopcornNav : MonoBehaviour
 
     void Update()
     {
-        
+        if (isAttacking) 
+        {
+            transform.LookAt(player.transform.position);
+        }
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").GetComponent<Player>();

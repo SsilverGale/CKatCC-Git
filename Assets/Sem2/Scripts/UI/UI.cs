@@ -28,8 +28,8 @@ public class UI : MonoBehaviour
     WaveSpawn waveSpawn;
     int dashCount = 0;
     [SerializeField] Text dashText;
-    int maxDashCount = 0;
-    float dashReload = 0;
+    public int maxDashCount = 0;
+    public float dashReload = 0;
 
     bool isWavePaused = false;
 
@@ -45,7 +45,7 @@ public class UI : MonoBehaviour
 
     bool MustardReload = false;
 
-    bool shiftEnabled = false;
+    public bool shiftEnabled = false;
 
     bool eEnabled = false;
 
@@ -53,11 +53,11 @@ public class UI : MonoBehaviour
 
     bool activateE = false;
 
-    bool abilityShiftActive = false;
+    public bool abilityShiftActive = false;
 
     bool abilityEActive = false;
 
-
+    public GameObject popup;
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +97,6 @@ public class UI : MonoBehaviour
             MustardReload = false;
             StartCoroutine(WaitSound());
         }
-
         if (isClick)
         {
             Ammotext.text = "Ammo: " + currentAmmo.ToString() + "/" + maxAmmo.ToString();
@@ -105,10 +104,9 @@ public class UI : MonoBehaviour
             {
                 Ammotext.text = "Ammo: " + "-/-";
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) || currentAmmo == 0)
             {
                 StartCoroutine(Reload(time));
-
             }
         }
 
@@ -196,14 +194,16 @@ public class UI : MonoBehaviour
         if (Class == "Mustard")
         {
             MustardReload = true;
+            currentAmmo++;
             yield return new WaitForSeconds((maxAmmo - currentAmmo) * time);
             MustardReload = false;
         }
         else
         {
             yield return new WaitForSeconds(time);
+            currentAmmo = maxAmmo;
         }
-        currentAmmo = maxAmmo;
+        
     }
 
     public int returnAmmo()
@@ -259,5 +259,15 @@ public class UI : MonoBehaviour
     public void DisableHitMarker()
     {
         hitMarker.SetActive(false);
+    }
+
+    public int GetMaxAmmo()
+    {
+        return maxAmmo;
+    }
+
+    public void ActivatePopup(bool input)
+    {
+        popup.gameObject.SetActive(input);
     }
 }

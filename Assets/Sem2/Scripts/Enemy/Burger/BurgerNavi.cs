@@ -22,6 +22,7 @@ public class BurgerNavi : MonoBehaviour
 
     Transform ObjectiveTransform;
 
+
     BurgerAnimations BA;
     void Start()
     {
@@ -33,6 +34,10 @@ public class BurgerNavi : MonoBehaviour
 
     void Update()
     {
+        if (isAttacking) 
+        {
+            transform.LookAt(player.transform.position);
+        }
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -42,11 +47,6 @@ public class BurgerNavi : MonoBehaviour
             BA.PlayWalk();
             //movement towards player
             agent.SetDestination(player.GetComponentInParent<Transform>().position);
-        }
-        if (isDefenceActive)
-        {
-            BA.PlayWalk();
-            agent.SetDestination(ObjectiveTransform.position);
         }
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
     }
@@ -73,14 +73,6 @@ public class BurgerNavi : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = true;
     }
 
-     void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "BearTrap")
-        {
-            StopMotion();
-            Invoke("FinishAttack", 2f);
-        }
-    }
 
     public void DefenceObjectiveSet(bool condition)
     {

@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014381529032257899, guid: 8882e58061c2030429b10565e98f7a9e, type: 3}
       propertyPath: m_Name
-      value: Bush Variations CKATCC Variant
+      value: BlueBushes
       objectReference: {fileID: 0}
     - target: {fileID: 4454874655968402165, guid: 8882e58061c2030429b10565e98f7a9e, type: 3}
       propertyPath: m_Materials.Array.data[0]

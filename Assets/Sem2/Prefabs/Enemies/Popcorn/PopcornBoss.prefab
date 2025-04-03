@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.99999
       objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 44b2912c52eb07346bb7c45f556440be, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4765c1b1d65e82409da8fdb5f6064df, type: 2}
     - target: {fileID: 8879528566716807029, guid: 44b2912c52eb07346bb7c45f556440be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -89.98021
@@ -152,8 +156,16 @@ PrefabInstance:
       value: PopcornBoss
       objectReference: {fileID: 0}
     - target: {fileID: 2699218651804667311, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699218651804667311, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
       propertyPath: m_TagString
       value: PopcornEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822632490107011204, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6887107747962351472, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
       propertyPath: m_LocalPosition.x

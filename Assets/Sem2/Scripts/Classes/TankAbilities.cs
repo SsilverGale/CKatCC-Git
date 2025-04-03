@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.WSA;
 
 public class TankAbilities : MonoBehaviour
 {
@@ -37,18 +39,17 @@ public class TankAbilities : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ColliderTransform = GetComponent<CapsuleCollider>().transform;
         PlayerTransform = GetComponent<Transform>();
+        gameObject.transform.GetChild(1).GetChild(0).GetComponent<CapsuleCollider>().enabled = false ;
     }
 
    
     void Update()
     {
+
+        
         if (!isBig)
         {
             transform.GetChild(1).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
-        }
-        if (isBig)
-        {
-            transform.GetChild(1).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
         }
         if (pH.GetIsDowned() == false)
         {
@@ -85,6 +86,7 @@ public class TankAbilities : MonoBehaviour
 
         if (Input.GetMouseButton(0) && isBig)
         {
+                transform.GetChild(1).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
                 if (enableSwingSound)
                 {
                     SoundManager.PlaySound(SoundType.TSWING);
@@ -94,14 +96,15 @@ public class TankAbilities : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0) && isBig)
         {
-            StopSwing();
+                transform.GetChild(1).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
+                StopSwing();
         }
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 SoundManager.PlaySound(SoundType.JUMP);
             }
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || ui.returnAmmo() == 0)
         {
             enableShoot = false;
             TSA.PlayReload();
@@ -116,6 +119,7 @@ public class TankAbilities : MonoBehaviour
             }
             StartCoroutine(SelfHealCooldown());
         }
+        
 
         //grows player
         if (growing && PlayerTransform.transform.localScale.x <= 3) 
@@ -201,7 +205,7 @@ public class TankAbilities : MonoBehaviour
 
     IEnumerator Reload()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds((ui.GetMaxAmmo() - ui.returnAmmo()) * 0.75f);
         enableShoot = true;
     }
 

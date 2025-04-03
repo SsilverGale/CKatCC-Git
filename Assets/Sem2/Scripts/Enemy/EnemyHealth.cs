@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class EnemyHealth : MonoBehaviour
     bool enableFire = false;
     XP xp;
     UI ui;
+    Rigidbody rb;
+    Player player;
+    bool first = false;
+    bool fly = false;
+    bool up = false;
 
     float fireDMG;
 
@@ -20,6 +26,8 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        rb = GetComponent<Rigidbody>();
         ui = GameObject.FindGameObjectWithTag("UI").GetComponent<UI>();
         xp = GameObject.FindGameObjectWithTag("XPHolder").GetComponent<XP>();
     }
@@ -38,8 +46,14 @@ public class EnemyHealth : MonoBehaviour
             enableFire = false;
             StartCoroutine(FireTick());
         }
-        if (hp < 0) 
+        if (hp < 0 && !first) 
         {
+            Vector3 backDirection = -transform.forward;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            
+            rb.mass = 0.2f;
+            rb.AddForce(backDirection * 500);
+            GetComponent<NavMeshAgent>().enabled = false;
             GameObject.FindGameObjectWithTag("WaveSpawn").GetComponent<WaveSpawn>().DecreaseEnemyCount();
             xp.AddXP(15);
             GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
@@ -52,9 +66,32 @@ public class EnemyHealth : MonoBehaviour
             {
                 temp[i].GetComponent<UI>().UpdateXP();
             }
+            int random = Random.Range(0,3);
             
-            
-            Destroy(gameObject);
+            if (random == 0)
+            {
+                Invoke("Descend", 2);
+            }
+            if (random == 1)
+            {
+                fly = true;
+                Invoke("Descend", 2);
+            }
+            if (random == 2)
+            {
+                up = true;
+            }
+            first = true;
+            Invoke("Descend", 2);
+        }
+        if (fly)
+        {
+            Vector3 backDirection = -transform.forward + new Vector3(1,1,0);
+            rb.AddForce(backDirection * 5);
+        }
+        if (up)
+        {
+            rb.AddForce(Vector3.up * 1);
         }
     }
     void OnCollisionEnter(Collision collision)
@@ -68,13 +105,16 @@ public class EnemyHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject.tag == "Respawner")
+        {
+            transform.position = new Vector3(-10,4,0);
+        }
         if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher" && enableLauncherDamage) || collision.gameObject.tag == "BearTrap")
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
             HurtEnemy();
             if (collision.gameObject.tag == "Launcher")
-            {
-                
+            {           
                 StartCoroutine(LauncherDamageCooldown());
             }
             if (collision.name == "SniperProjectilePoison")
@@ -97,17 +137,17 @@ public class EnemyHealth : MonoBehaviour
     {
         hp -= reduceHealth;
         ui.HitMarker();
-        if (transform.name =="Borgir(Clone)" || transform.name == "BorgirBoss(Clone)")
+        if (transform.name =="Borgir(Clone)" || transform.name == "BorgirBoss(Clone)" && hp > 0)
         {
             transform.GetChild(0).GetChild(3).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
             Invoke("RevertColor", 0.1f);
         }
-        if (transform.name == "HotDog(Clone)" || transform.name == "HotDogBoss(Clone)")
+        if (transform.name == "HotDog(Clone)" || transform.name == "HotDogBoss(Clone)" && hp > 0)
         {
             transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
             Invoke("RevertColor", 0.1f);
         }
-        if (transform.name == "Popcorn Variant(Clone)" || transform.name == "PopcornBoss(Clone)")
+        if (transform.name == "Popcorn Variant(Clone)" || transform.name == "PopcornBoss(Clone)" && hp > 0)
         {
             transform.GetChild(2).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
             Invoke("RevertColor", 0.1f);
@@ -152,7 +192,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void IncreaseHealth()
     {
-        hp *= 4; 
+        hp *= 3; 
+    }
+
+    public void Descend()
+    {
+        GetComponent<Collider>().enabled = false;
+        Destroy(gameObject, 2f);
+        GetComponent<EnemyHealth>().enabled = false;
     }
 
 }

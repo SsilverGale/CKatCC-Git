@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using System;
+using UnityEngine.EventSystems;
 
 public class PlayerMove : NetworkBehaviour
 {
@@ -12,6 +14,14 @@ public class PlayerMove : NetworkBehaviour
     [SerializeField] float jumpForce = PlayerStats.jumpForce;
     [SerializeField] PlayerHealth playerHealth;
     bool onGround;
+    public float dashForceX = 15;
+    public float dashVelocityX;
+    public float dashFallOffDuration = 0.6f;
+    private Vector3 _moveDirection;
+    public float dashDuration = 0.25f;
+    public float dashTime = 0.5f;
+    public bool isDashing;
+    float residueSpeedX;
 
     Vector2 moveInput;
     Rigidbody rb;
@@ -28,15 +38,56 @@ public class PlayerMove : NetworkBehaviour
 
     void Update()
     {
-            Run();
+        
         //if(!IsOwner) return; //Makes it so that only the host is controlling a character. Will be deleted later
-        if(playerHealth.GetIsDowned()){
+        if (playerHealth.GetIsDowned()){
             rb.freezeRotation = false;
             walkSpeed = 0;
         }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            dashTime = 0;
+            isDashing = true;
+        }
     }
 
-    //checks which inputs the player has pressed and moves them accordingly
+    void FixedUpdate()
+    {
+        if (GetComponent<SpeedsterAbilities>().ReturnDashCount() > 0 && GetComponent<SpeedsterAbilities>().ReturnCanDash() && transform.parent.name == "SpeedsterPlayer(Clone)")
+        {
+            Debug.Log("Function runs");
+            if (isDashing)
+            {
+                Debug.Log("Dash");
+                dashTime += Time.fixedDeltaTime;
+                rb.velocity = new Vector3(dashVelocityX, rb.velocity.y, rb.velocity.z * dashVelocityX);
+                if (dashForceX > 10)
+                {
+                    dashVelocityX = Mathf.Lerp(dashVelocityX, 0, dashTime / dashFallOffDuration);
+                }
+                if (dashTime >= dashDuration)
+                {
+                    dashForceX = 15;
+                    isDashing = false;
+                    residueSpeedX = dashVelocityX;
+                }
+            }
+            else if (residueSpeedX != 0)
+            {
+                residueSpeedX = Mathf.MoveTowards(residueSpeedX, 0, 1);
+                _moveDirection = new Vector3(moveInput.x * walkSpeed, rb.velocity.y, moveInput.y * walkSpeed);
+                rb.velocity = transform.TransformDirection(_moveDirection);
+            }
+            
+        }
+        else
+        {
+            _moveDirection = new Vector3(moveInput.x * walkSpeed, rb.velocity.y, moveInput.y * walkSpeed);
+            rb.velocity = transform.TransformDirection(_moveDirection);
+        }
+    }
+
+    /*checks which inputs the player has pressed and moves them accordingly
     void Run()
     {
         try{
@@ -48,6 +99,7 @@ public class PlayerMove : NetworkBehaviour
 
  
     }
+    */
 
     //gets the input values for walking
     private void OnMove(InputValue value)

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Services.Lobbies.Models;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
@@ -20,21 +22,21 @@ public class SpeedsterAbilities : MonoBehaviour
     UI ui;
     KarbineAnimations KA;
     bool enableRegen = false;
-    bool enableDash = false;
+    public bool enableDash = false;
     [SerializeField] bool enableDoubleJump = false;
-    float dashForce = 5500;
     [SerializeField] int dashCount = 0;
-    int maxDashCount = 0;
-    float dashReload = 0;
+    public int maxDashCount = 0;
+    public bool dashReload = false;
     RaycastHit hit;
     Vector3 rayHit;
+    public float dashForce = 15;
+    
 
     void Start()
     {
         KA = GetComponent<KarbineAnimations>();
         ui = GameObject.FindWithTag("UI").GetComponent<UI>();
         jumpForce = 55f;
-        dashForce = 1000f;
         rb = GetComponent<Rigidbody>(); 
         enableShoot = true;
         cam = GameObject.FindWithTag("MainCamera").transform;
@@ -43,7 +45,7 @@ public class SpeedsterAbilities : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && ui.returnAmmo() == 0)
         {
             KA.StartReload();
             enableShoot = false;
@@ -57,6 +59,7 @@ public class SpeedsterAbilities : MonoBehaviour
                 SoundManager.PlaySound(SoundType.SPSHOOT);
                 ui.decreaseAmmo(2);
                 StartCoroutine(Cooldown());
+
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -67,45 +70,21 @@ public class SpeedsterAbilities : MonoBehaviour
             SoundManager.PlaySound(SoundType.JUMP);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canDoubleJump = false;
-        }
-        
-        
+        }               
         if (enableRegen)
         {
             GetComponent<PlayerHealth>().HealPlayer(0.001f);
         }
-
-        if (dashCount < 3)
+        if (dashCount < maxDashCount && dashReload)
         {
-            dashReload += Time.deltaTime;
+            StartCoroutine(DashReload());
         }
-        if (dashReload >= 10)
-        {
-            dashCount++;
-            ui.UpdateDash(1);
-            dashReload = 0;
-        }
+  
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCount > 0 && enableDash)
-        {
-            float tempH = Input.GetAxis("Horizontal");
-            float tempV = Input.GetAxis("Vertical");
-
-            Vector3 forward = Camera.main.transform.forward;
-            Vector3 right = Camera.main.transform.right;
-
-            Vector3 FFRI = tempV * forward;
-            Vector3 RFRI = tempH * right;
-
-            Vector3 CRM = FFRI + RFRI;
-
-            rb.AddForce(CRM * dashForce, ForceMode.Impulse);
-            dashCount--;
-            ui.UpdateDash(-1);
-        }
+        
         if (Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.position, Camera.main.transform.forward * hit.distance, Color.yellow);
@@ -143,6 +122,15 @@ public class SpeedsterAbilities : MonoBehaviour
         }
     }
 
+    IEnumerator DashReload()
+    {
+        dashReload = false;
+        yield return new WaitForSeconds(3);
+        ui.UpdateDash(dashCount);
+        dashCount++;
+        dashReload = true;
+    }
+
     public void LevelSkill(string input)
     {
 
@@ -161,6 +149,7 @@ public class SpeedsterAbilities : MonoBehaviour
         if (input == "DASH")
         {
             maxDashCount = 1;
+            dashReload = true;
             enableDash = true;
         }
         if (input == "DASH+")
@@ -191,6 +180,25 @@ public class SpeedsterAbilities : MonoBehaviour
     {
         return rayHit;
     }
+    
+    public float ReturnDashForce()
+    {
+        return dashForce;
+    }
 
+    public bool ReturnCanDash()
+    {
+        return enableDash;
+    }
+
+    public int ReturnDashCount()
+    {
+        return dashCount;
+    }
+
+    public int ReturnMaxDash()
+    {
+        return maxDashCount;
+    }
    
 }

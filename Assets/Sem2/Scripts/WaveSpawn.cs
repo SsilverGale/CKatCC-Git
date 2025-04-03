@@ -112,6 +112,7 @@ public class WaveSpawn : MonoBehaviour
                                 if (empowerEnemy)
                                 {
                                     Instantiate(BurgerBossEnemy, defaultSpawnPoints[spawnPointcount].transform.position, Quaternion.identity);
+                                    empowerEnemy = false;
                                 }
                                 else
                                 {
@@ -123,6 +124,7 @@ public class WaveSpawn : MonoBehaviour
                                 if (empowerEnemy)
                                 {
                                     Instantiate(HotdogBossEnemy, defaultSpawnPoints[spawnPointcount].transform.position, Quaternion.identity);
+                                empowerEnemy = false;
                                 }
                                 else
                                 {
@@ -134,6 +136,7 @@ public class WaveSpawn : MonoBehaviour
                                 if (empowerEnemy)
                                 {
                                     Instantiate(PopcornBossEnemy, defaultSpawnPoints[spawnPointcount].transform.position, Quaternion.identity);
+                                    empowerEnemy = false;   
                                 }
                                 else
                                 {

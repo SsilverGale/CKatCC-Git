@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4a3643378f1cc9749b4808b992ec5310, type: 2}
     - target: {fileID: 919132149155446097, guid: dc631e3ef206c8f4bb050db0c502cb97, type: 3}
       propertyPath: m_Name
-      value: CKATCC Tree 1
+      value: Tree1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc631e3ef206c8f4bb050db0c502cb97, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,6 +14,7 @@ public class SkillTree : MonoBehaviour
     GameObject Player;
     UI ui;
     bool enoughXP = false;
+    bool isPress = false;
 
 
     void Start()
@@ -24,7 +25,15 @@ public class SkillTree : MonoBehaviour
 
     private void Update()
     {
-        if(Player == null) 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            isPress = true;
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            isPress = false;
+        }
+        if (Player == null) 
         {
             Player = GameObject.FindGameObjectWithTag("Player");
         }
@@ -121,6 +130,15 @@ public class SkillTree : MonoBehaviour
     {
         if (other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)")
         {
+            ui.ActivatePopup(true);
+        }           
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ((other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)") && isPress)
+        {
             LockAbility(false);
             Class = Player.transform.parent.name;
             MouseClamp(false);
@@ -130,11 +148,12 @@ public class SkillTree : MonoBehaviour
     }
 
 
-
     void OnTriggerExit(Collider other)
     {
+        ui.ActivatePopup(false);
         if (other.gameObject.transform.parent.name == "TankPlayer(Clone)" || other.gameObject.transform.parent.name == "SpeedsterPlayer(Clone)" || other.gameObject.transform.parent.name == "SupportPlayer(Clone)" || other.gameObject.transform.parent.name == "SniperPlayer(Clone)")
         {
+            
             LockAbility(true);
             MouseClamp(true);
             PanelActivate(false);

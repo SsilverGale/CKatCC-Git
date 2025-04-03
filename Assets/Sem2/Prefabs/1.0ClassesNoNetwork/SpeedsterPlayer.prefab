@@ -827,6 +827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8559271953487652208, guid: 6fd97203e09def34a9f7228238eda688, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9144002985627352557, guid: 6fd97203e09def34a9f7228238eda688, type: 3}
       propertyPath: pHealth
       value: 50
@@ -888,8 +892,12 @@ MonoBehaviour:
   speedsterProjectile: {fileID: 1860442314651996493, guid: 429ad3362132f9f408796913cd389196, type: 3}
   weaponTip: {fileID: 5779573664211796651}
   weaponTip2: {fileID: 2352146520898423336}
+  enableShoot: 0
   jumpForce: 55
+  enableDoubleJump: 0
   dashCount: 0
+  dashReload: 0
+  dashForce: 0
 --- !u!114 &2758239727537287168
 MonoBehaviour:
   m_ObjectHideFlags: 0

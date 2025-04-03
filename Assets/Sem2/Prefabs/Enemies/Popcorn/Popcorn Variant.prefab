@@ -156,8 +156,16 @@ PrefabInstance:
       value: Popcorn Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2699218651804667311, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699218651804667311, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
       propertyPath: m_TagString
       value: PopcornEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822632490107011204, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6887107747962351472, guid: 2609ae8711b09c647ba137b245f19b66, type: 3}
       propertyPath: m_LocalPosition.x

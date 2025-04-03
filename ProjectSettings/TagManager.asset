@@ -33,6 +33,7 @@ TagManager:
   - Shop
   - BearTrap
   - Burger
+  - Respawner
   layers:
   - Default
   - TransparentFX
@@ -40,12 +41,12 @@ TagManager:
   - 
   - Water
   - UI
+  - Detector
+  - Enemy
+  - Launcher
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground
   - 
   - 
   - 

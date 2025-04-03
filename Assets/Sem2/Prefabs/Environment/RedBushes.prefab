@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8935183635217372706, guid: b76f8faefc7b5ca479b5153060d7b69c, type: 3}
       propertyPath: m_Name
-      value: Bush Variations CKATCC Variant
+      value: RedBushes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

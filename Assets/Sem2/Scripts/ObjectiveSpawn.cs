@@ -24,12 +24,14 @@ public class ObjectiveSpawn : MonoBehaviour
         {
             Debug.Log("Hotsauce is Rising!");
             FIHS.StartRise();
+            random = -1;
         }
         //Mini boss
         if (random == 1)
         {
             Debug.Log("Enemy Empowered!");
             WS.MinibossEmpower();
+            random = -1;
         }
     }
 
