@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float hp;
+    [SerializeField] public float hp;
     float reduceHealth;
     bool enableLauncherDamage = true;
     bool enablePoison = false;
@@ -202,5 +202,8 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject, 2f);
         GetComponent<EnemyHealth>().enabled = false;
     }
-
+    public float getHealth()
+    {
+        return hp;
+    }
 }
