@@ -4935,6 +4935,7 @@ GameObject:
   - component: {fileID: 109347979045694069}
   - component: {fileID: 5887195969434182283}
   - component: {fileID: 8056549012495847508}
+  - component: {fileID: 7487882084965795504}
   m_Layer: 0
   m_Name: Molotov
   m_TagString: Molotov
@@ -5043,3 +5044,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
+--- !u!114 &7487882084965795504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7137423639829726459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b2fa87e8870cb4fabddd7319205f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

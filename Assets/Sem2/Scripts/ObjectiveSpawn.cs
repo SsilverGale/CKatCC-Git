@@ -29,20 +29,14 @@ public class ObjectiveSpawn : MonoBehaviour
         if (random == 0)
         {
             Debug.Log("Hotsauce is Rising!");
-            eventDisplayMain.gameObject.SetActive(true);
-            eventDisplaySub.gameObject.SetActive(true);
-            eventDisplayMain.text = "Hot Sauce is Rising!";
-            eventDisplaySub.text = "Get to high ground!!";
+
             FIHS.StartRise();
             random = -1;
-            Invoke("resetText", 3);
         }
         //Mini boss
         if (random == 1)
         {
             Debug.Log("Enemy Empowered!");
-            eventDisplayMain.text = "A boss has spawned!";
-            eventDisplaySub.text = "Take them down!";
             WS.MinibossEmpower();
             random = -1;
         }
