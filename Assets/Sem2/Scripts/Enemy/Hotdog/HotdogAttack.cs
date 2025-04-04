@@ -46,6 +46,7 @@ public class HotdogAttack : MonoBehaviour
         if (!oneAttack && !isWallBetween)
         {
             //Debug.Log("Shot");
+            SoundManager.PlaySound(SoundType.HDA);
             InstantiateBullet();
             Invoke("ReEnableMovement", 2f);
         }

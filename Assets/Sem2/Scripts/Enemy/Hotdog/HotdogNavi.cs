@@ -66,6 +66,7 @@ public class HotdogNavi : MonoBehaviour
         isNavmeshActive = false;
         agent.SetDestination(transform.position);
         GetComponent<NavMeshAgent>().enabled = false;
+        transform.position += new Vector3(0, 0.5f, 0);
 
     }
 

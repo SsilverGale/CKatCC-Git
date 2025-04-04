@@ -37,7 +37,7 @@ public class SniperProjectile : MonoBehaviour
     //destroys object on collision other than other players
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player" || other.transform.tag == "BurgerDetectRange" || other.transform.tag == "HotDogDetectRange" || other.transform.tag == "PopcornDetectRange" || other.transform.tag == "Untagged")
+        if (other.transform.tag == "Player" || other.transform.tag == "BurgerDetectRange" || other.transform.tag == "HotDogDetectRange" || other.transform.tag == "PopcornDetectRange" || other.transform.tag == "Untagged" || other.transform.tag == "Burger" || other.transform.tag == "Hotdog" || other.transform.tag == "Popcorn")
         {
             return;
         }
@@ -53,7 +53,11 @@ public class SniperProjectile : MonoBehaviour
                 temp2.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
                 temp3.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
                 temp4.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
-                Destroy(gameObject);
+                Destroy(temp,2f);
+                Destroy(temp2, 2f);
+                Destroy(temp3, 2f);
+                Destroy(temp4, 2f);
+
             }
             Destroy(gameObject);
         }

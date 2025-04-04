@@ -27,6 +27,7 @@ public class TankAbilities : MonoBehaviour
     int bigFormHP = 300;
     bool enableShrink = false;
     bool enableSelfHeal = false;
+    bool isReloading = false;
     
 
     void Start()
@@ -44,9 +45,7 @@ public class TankAbilities : MonoBehaviour
 
    
     void Update()
-    {
-
-        
+    {       
         if (!isBig)
         {
             transform.GetChild(1).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
@@ -71,11 +70,9 @@ public class TankAbilities : MonoBehaviour
                     
                     growing = true;
                     Camera.transform.position += new Vector3(0.1f, 1.8f, 2);
-                }
-                
-
+                }               
             }
-        if (Input.GetMouseButtonDown(0) && !isBig && enableShoot && ui.returnAmmo() != 0)
+        if (Input.GetMouseButtonDown(0) && !isBig && enableShoot && ui.returnAmmo() != 0 && !isReloading)
         {
             SoundManager.PlaySound(SoundType.TSHOOT);
             TSA.PlayShoot();
@@ -205,8 +202,11 @@ public class TankAbilities : MonoBehaviour
 
     IEnumerator Reload()
     {
+        isReloading = true;
         yield return new WaitForSeconds((ui.GetMaxAmmo() - ui.returnAmmo()) * 0.75f);
         enableShoot = true;
+        isReloading = false;
+        
     }
 
     public void LevelSkill(string input)

@@ -45,8 +45,9 @@ public class SpeedsterAbilities : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && ui.returnAmmo() == 0)
+        if (Input.GetKeyDown(KeyCode.R) || ui.returnAmmo() == 0 && enableShoot)
         {
+            SoundManager.PlaySound(SoundType.SPDRELOAD);
             KA.StartReload();
             enableShoot = false;
             StartCoroutine(Reload());
@@ -83,12 +84,10 @@ public class SpeedsterAbilities : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        
+    {       
         if (Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.position, Camera.main.transform.forward * hit.distance, Color.yellow);
-            Debug.Log(hit.collider);
             rayHit = hit.point;
         }
 

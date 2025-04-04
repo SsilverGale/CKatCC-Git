@@ -32,6 +32,7 @@ public class UI : MonoBehaviour
     public float dashReload = 0;
 
     bool isWavePaused = false;
+    bool first = false;
 
     string Class;
     bool canShoot;
@@ -91,8 +92,9 @@ public class UI : MonoBehaviour
             {
                 Ammotext.text = "Ammo: " + "-/-";
             }
-            if (Input.GetKeyDown(KeyCode.R) || currentAmmo == 0)
+            if (Input.GetKeyDown(KeyCode.R) || currentAmmo == 0 && !first)
             {
+                first = true;
                 StartCoroutine(Reload(time));
                 MustardReload = true;
             }
@@ -122,22 +124,15 @@ public class UI : MonoBehaviour
                 E.GetComponent<Button>().interactable = true;
             }
         }
-
+        if (MustardCount < maxAmmo && MustardReload && Class == "Mustard")
+        {
+            SoundManager.PlaySound(SoundType.TANKRELOAD);
+            MustardCount++;
+            StartCoroutine(WaitSound());
+        }
         if (Class == "Ketchup")
         {
            dashText.text = dashCount.ToString();
-        }
-        if (MustardReload && (MustardCount + currentAmmo) < maxAmmo)
-        {
-            SoundManager.PlaySound(SoundType.TANKRELOAD);
-            currentAmmo++;
-            MustardCount++;
-            MustardReload = false;
-            StartCoroutine(WaitSound());
-        }
-        if (MustardCount > maxAmmo)
-        {
-            MustardCount = 0;
         }
     }
 
@@ -192,13 +187,21 @@ public class UI : MonoBehaviour
     {   
         if (Class == "Mustard")
         {
+            MustardCount = currentAmmo;
+            MustardReload = true;
             yield return new WaitForSeconds((maxAmmo - currentAmmo) * time);       
+            MustardReload = false;
         }
         else
         {
             yield return new WaitForSeconds(time);
         }
+        if (Class == "Mustard")
+        {
+            SoundManager.PlaySound(SoundType.CHK);
+        }
         currentAmmo = maxAmmo;
+        first = false;
     }
 
     public int returnAmmo()
@@ -213,6 +216,7 @@ public class UI : MonoBehaviour
 
     IEnumerator WaitSound()
     {
+        MustardReload = false;
         yield return new WaitForSeconds(0.75f);
         MustardReload = true;
     }
@@ -247,6 +251,7 @@ public class UI : MonoBehaviour
 
     public void HitMarker()
     {
+        SoundManager.PlaySound(SoundType.HM);
         hitMarker.SetActive(true);
         Invoke("DisableHitMarker", 0.3f);
     }

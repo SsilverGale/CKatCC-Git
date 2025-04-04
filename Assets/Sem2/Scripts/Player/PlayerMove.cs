@@ -23,6 +23,8 @@ public class PlayerMove : NetworkBehaviour
     public bool isDashing;
     float residueSpeedX;
 
+    bool enableSound = true;
+
     Vector2 moveInput;
     Rigidbody rb;
 
@@ -38,7 +40,11 @@ public class PlayerMove : NetworkBehaviour
 
     void Update()
     {
-        
+        if (enableSound && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+        {
+            SoundManager.PlaySound(SoundType.STEP);
+            StartCoroutine(WaitSound());
+        }
         //if(!IsOwner) return; //Makes it so that only the host is controlling a character. Will be deleted later
         if (playerHealth.GetIsDowned()){
             rb.freezeRotation = false;
@@ -100,6 +106,13 @@ public class PlayerMove : NetworkBehaviour
  
     }
     */
+
+    IEnumerator WaitSound()
+    {
+        enableSound = false;
+        yield return new WaitForSeconds(1.25f);
+        enableSound = true;
+    }
 
     //gets the input values for walking
     private void OnMove(InputValue value)

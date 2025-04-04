@@ -31,6 +31,7 @@ public class TankRocket : MonoBehaviour
         }
         else
         {
+            SoundManager.PlaySound(SoundType.XPLODE);
             Debug.Log(other.tag);
             Destroy(this.gameObject);
             Instantiate(TankRocketExplosion, transform.position, Quaternion.identity);

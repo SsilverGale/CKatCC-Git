@@ -19,6 +19,7 @@ public enum SoundType
     HM,
     HDA,
     XPLODE,
+    CHK,
 }
 
 

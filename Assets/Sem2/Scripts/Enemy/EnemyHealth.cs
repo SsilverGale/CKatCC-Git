@@ -34,6 +34,10 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
+        if (transform.position.y < -6)
+        {
+            transform.position = new Vector3(transform.position.x,-4,transform.position.z);
+        }
         if (enablePoison && (Time.time - captureTime) <= 6)
         {
             hp -= 5;
@@ -110,7 +114,7 @@ public class EnemyHealth : MonoBehaviour
         {
             transform.position = new Vector3(-10,4,0);
         }
-        if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher" && enableLauncherDamage) || collision.gameObject.tag == "BearTrap")
+        if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher" && enableLauncherDamage))
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
             HurtEnemy();

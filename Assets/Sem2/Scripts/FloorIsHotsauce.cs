@@ -23,12 +23,12 @@ public class FloorIsHotsauce : MonoBehaviour
         {
             transform.position += Vector3.down * 0.01f;
         }
-        if (transform.position.y <= -6)
+        if (transform.position.y <= -20)
         {
             isSinking = false;
             gameObject.SetActive(false);
         }
-        if (Time.time - capturedTime >= 10f && isRising)
+        if (Time.time - capturedTime >= 7.5f && isRising)
         {
             isRising = false;
             StartCoroutine(EnableSink());
@@ -45,7 +45,7 @@ public class FloorIsHotsauce : MonoBehaviour
 
     IEnumerator EnableSink()
     {        
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         isSinking = true;
     }
     IEnumerator EnableRise()

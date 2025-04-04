@@ -27,6 +27,7 @@ public class EmpowerEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher"))
         {
+            transform.parent.GetChild(1).gameObject.SetActive(true);
             GetComponent<EnemyHealth>().IncreaseHealth();
             IncreaseSize();
         }
