@@ -19,11 +19,5 @@ public class Player : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        //physics based on if the player is hit and what velocity the burger has
-        if (collision.transform.CompareTag("BurgerEnemy"))
-        {
-            
-            transform.GetComponentInParent<Rigidbody>().velocity = collision.transform.GetComponent<Rigidbody>().velocity;
-        }
     }
 }
