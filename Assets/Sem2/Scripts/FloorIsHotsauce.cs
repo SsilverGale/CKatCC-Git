@@ -7,6 +7,7 @@ public class FloorIsHotsauce : MonoBehaviour
     bool isRising = false;
     bool isSinking = false;
     [SerializeField] float capturedTime = 0;
+    [SerializeField] GameObject panel;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class FloorIsHotsauce : MonoBehaviour
         }
         if (transform.position.y <= -20)
         {
+            panel.SetActive(false);
             isSinking = false;
             gameObject.SetActive(false);
         }
@@ -37,6 +39,7 @@ public class FloorIsHotsauce : MonoBehaviour
 
     public void StartRise()
     {
+        panel.SetActive(true);
         Debug.Log("Floor is Hot Sauce!!!");
         gameObject.SetActive(true);
         StartCoroutine(EnableRise());

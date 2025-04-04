@@ -24,19 +24,11 @@ public class EmpowerEnemy : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher"))
-        {
-            transform.parent.GetChild(1).gameObject.SetActive(true);
-            if (transform.name == "")
-            GetComponent<EnemyHealth>().IncreaseHealth();
-            IncreaseSize();
-        }
-    }
-
-    void IncreaseSize()
+    public void IncreaseSize()
     {
         isSizingUp = true;
+        Debug.Log("hit");
+        transform.parent.GetChild(1).gameObject.SetActive(true);
+        GetComponent<EnemyHealth>().IncreaseHealth();
     }
 }

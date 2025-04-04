@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8895448708536747921}
   - component: {fileID: 6893135663747357688}
   - component: {fileID: 2149639569661317409}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: BorgirBoss
   m_TagString: Burger
   m_Icon: {fileID: 0}

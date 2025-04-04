@@ -34,6 +34,7 @@ TagManager:
   - BearTrap
   - Burger
   - Respawner
+  - DamageAni
   layers:
   - Default
   - TransparentFX

@@ -31,7 +31,7 @@ public class SpeedsterProjectile : MonoBehaviour
     //destroys object on collision other than other players
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player" || other.transform.tag == "SpeedsterProjectile" || other.transform.tag == "Guntip")
+        if (other.transform.tag == "Player" || other.transform.tag == "BurgerDetectRange" || other.transform.tag == "HotDogDetectRange" || other.transform.tag == "PopcornDetectRange" ||  other.transform.tag == "FIHS")
         {
             return;
         }

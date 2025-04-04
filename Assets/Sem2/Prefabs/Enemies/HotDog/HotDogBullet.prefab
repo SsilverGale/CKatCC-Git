@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3562237318766133702}
   - component: {fileID: 5704358564427935961}
   - component: {fileID: 5043674179693682550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HotDogBullet
   m_TagString: HotdogBullet
   m_Icon: {fileID: 0}

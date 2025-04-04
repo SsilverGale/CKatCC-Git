@@ -34,9 +34,9 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < -6)
+        if (transform.position.y < -8)
         {
-            transform.position = new Vector3(transform.position.x,-4,transform.position.z);
+            transform.position = new Vector3(-10, 5, 0);
         }
         if (enablePoison && (Time.time - captureTime) <= 6)
         {
@@ -144,6 +144,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void HurtEnemy()
     {
+        if (transform.name == "BorgirBoss" || transform.name == "PopcornBoss" || transform.name == "HotdogBoss")
+        {
+            GetComponent<EmpowerEnemy>().IncreaseSize();
+        }
         hp -= reduceHealth;
         ui.HitMarker();
         if (transform.name =="Borgir(Clone)" || transform.name == "BorgirBoss(Clone)" && hp > 0)

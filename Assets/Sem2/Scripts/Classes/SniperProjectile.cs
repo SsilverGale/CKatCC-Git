@@ -37,7 +37,7 @@ public class SniperProjectile : MonoBehaviour
     //destroys object on collision other than other players
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player" || other.transform.tag == "BurgerDetectRange" || other.transform.tag == "HotDogDetectRange" || other.transform.tag == "PopcornDetectRange" || other.transform.tag == "Untagged" || other.transform.tag == "Burger" || other.transform.tag == "Hotdog" || other.transform.tag == "Popcorn")
+        if (other.transform.tag == "Player" || other.transform.tag == "BurgerDetectRange" || other.transform.tag == "HotDogDetectRange" || other.transform.tag == "PopcornDetectRange" || other.transform.tag == "Untagged" || other.transform.tag == "Burger" || other.transform.tag == "Hotdog" || other.transform.tag == "Popcorn" || other.transform.tag == "FIHS")
         {
             return;
         }

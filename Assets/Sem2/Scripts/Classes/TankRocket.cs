@@ -25,7 +25,7 @@ public class TankRocket : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Launcher" || other.tag == "Launcher" || other.tag == "MainCamera" || other.tag == "BurgerDetectRange" || other.tag == "TankRocketExplosion")
+        if (other.transform.tag == "Player" || other.transform.tag == "BurgerDetectRange" || other.transform.tag == "HotDogDetectRange" || other.transform.tag == "PopcornDetectRange" || other.transform.tag == "Untagged" || other.transform.tag == "FIHS")
         {
             return;
         }
