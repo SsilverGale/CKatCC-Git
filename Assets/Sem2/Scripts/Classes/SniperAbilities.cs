@@ -36,6 +36,7 @@ public class SniperAbilities : MonoBehaviour
     float poisonMod = 1;
 
     float critDMG = 2;
+    int fireCount = 0;
 
 
     // Start is called before the first frame update
@@ -182,9 +183,9 @@ public class SniperAbilities : MonoBehaviour
         {
             GetComponent<PlayerMove>().IncrementSpeed(1);
         }
-        if (input == "BEARTRAP")
+        if (input == "FIRECOUNT")
         {
-            enableBearTrap = true;
+            fireCount++;
         }
         if (input == "CRTDMG")
         {
@@ -239,5 +240,9 @@ public class SniperAbilities : MonoBehaviour
         return critDMG; 
     }
 
+    public int ReturnFireCount()
+    {
+        return fireCount;
+    }
     
 }

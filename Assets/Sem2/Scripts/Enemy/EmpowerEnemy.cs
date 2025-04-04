@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class EmpowerEnemy : MonoBehaviour
         if (collision.gameObject.tag == "SniperProjectile" || collision.gameObject.tag == "SupportPunchProjectile" || collision.gameObject.tag == "TankRocketExplosion" || collision.gameObject.tag == "SpeedsterProjectile" || (collision.gameObject.tag == "Launcher"))
         {
             transform.parent.GetChild(1).gameObject.SetActive(true);
+            if (transform.name == "")
             GetComponent<EnemyHealth>().IncreaseHealth();
             IncreaseSize();
         }

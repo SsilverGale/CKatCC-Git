@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class HotDogBullet : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class HotDogBullet : MonoBehaviour
     Rigidbody rb;
     float speed = 30f;
     Transform enemyTransform;
-
 
     void Start()
     {

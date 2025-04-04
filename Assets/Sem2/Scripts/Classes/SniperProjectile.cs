@@ -49,6 +49,11 @@ public class SniperProjectile : MonoBehaviour
                 GameObject temp2 = Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
                 GameObject temp3 = Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
                 GameObject temp4 = Instantiate(moly, transform.position + new Vector3(0,0.2f,0), Quaternion.identity);
+                for (int i = 0; i < SA.GetComponent<SniperAbilities>().ReturnFireCount(); i++)
+                {
+                    GameObject temp5 = Instantiate(moly, transform.position + new Vector3(0, 0.2f, 0), Quaternion.identity);
+                    Destroy(temp5,2f);
+                }
                 temp.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
                 temp2.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());
                 temp3.GetComponent<DamageHolder>().SetDamage(temp.GetComponent<DamageHolder>().GetDamage() * SA.GetFireMod());

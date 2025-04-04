@@ -28,7 +28,9 @@ public class TankAbilities : MonoBehaviour
     bool enableShrink = false;
     bool enableSelfHeal = false;
     bool isReloading = false;
-    
+    int healMod = 0;
+    float auraMod = 0;
+    bool isThorn = false;
 
     void Start()
     {
@@ -112,7 +114,7 @@ public class TankAbilities : MonoBehaviour
             enableSelfHeal = false;
             for (int i = 0; i < 75; i ++)
             {
-                GetComponent<PlayerHealth>().IncrementHealth(1);
+                GetComponent<PlayerHealth>().IncrementHealth(1 + healMod);
             }
             StartCoroutine(SelfHealCooldown());
         }
@@ -225,23 +227,23 @@ public class TankAbilities : MonoBehaviour
         }
         if (input == "THORNS")
         {
-
+            isThorn = true;
         }
         if (input == "DMGAURA")
         {
-
+            transform.GetChild(2).gameObject.SetActive(true);
         }
         if (input == "AURADMG+")
         {
-
+            auraMod = 35;
         }
         if (input == "SLFHEAL")
         {
-
+            enableSelfHeal = true;          
         }
         if (input == "HEAL+")
         {
-
+            healMod += 1;
         }
     }
 
@@ -257,4 +259,13 @@ public class TankAbilities : MonoBehaviour
         
     }
 
+    public float ReturnAuraMod()
+    {
+        return auraMod;
+    }
+
+    public bool ReturnThorn()
+    {
+        return isThorn;
+    }
 }

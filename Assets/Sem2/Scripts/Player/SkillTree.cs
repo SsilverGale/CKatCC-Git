@@ -13,8 +13,8 @@ public class SkillTree : MonoBehaviour
     [SerializeField] GameObject supportSkills;
     GameObject Player;
     UI ui;
-    bool enoughXP = false;
-    bool isPress = false;
+    public bool enoughXP = false;
+    public bool isPress = false;
 
 
     void Start()
@@ -62,22 +62,26 @@ public class SkillTree : MonoBehaviour
             if (Class == "TankPlayer(Clone)")
             {
                 Player.GetComponent<TankAbilities>().LevelSkill(skillName);
+                enoughXP = true;
             }
             if (Class == "SniperPlayer(Clone)")
             {
                 Player.GetComponent<SniperAbilities>().LevelSkill(skillName);
+                enoughXP = true;
             }
             if (Class == "SupportPlayer(Clone)")
             {
                Player.GetComponent<SupportAbilities>().LevelSkill(skillName);
+                enoughXP = true;
             }
             if (Class == "SpeedsterPlayer(Clone)")
             {
                Player.GetComponent<SpeedsterAbilities>().LevelSkill(skillName);
+                enoughXP = true;
             }
             enoughXP = true;
         }
-        else
+        if (inputC >= Player.GetComponent<PlayerXP>().GetPlayerXP())
         {
             enoughXP = false;
             Debug.Log("Not Enough XP!");

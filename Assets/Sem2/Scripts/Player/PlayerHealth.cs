@@ -56,6 +56,10 @@ public class PlayerHealth : MonoBehaviour
         if ((collision.gameObject.tag == "Oucher" || collision.gameObject.tag == "BurgerEnemy" || collision.gameObject.tag == "PopcornExplosion" || collision.gameObject.tag == "HotdogBullet" || collision.gameObject.tag == "FIHS") && isInvincible == false)
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
+            if (collision.GetComponent<TankAbilities>().ReturnThorn())
+            {
+                collision.GetComponent<EnemyHealth>().HurtEnemy(15);
+            }
             hit = true;
             StartCoroutine(HurtPlayer());
         }

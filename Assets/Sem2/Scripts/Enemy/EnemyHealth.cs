@@ -118,6 +118,10 @@ public class EnemyHealth : MonoBehaviour
         {
             reduceHealth = collision.gameObject.GetComponent<DamageHolder>().GetDamage();
             HurtEnemy();
+            if (collision.GetComponent<TankAbilities>().ReturnThorn())
+            {
+                HurtEnemy(15);
+            }
             if (collision.gameObject.tag == "Launcher")
             {           
                 StartCoroutine(LauncherDamageCooldown());
@@ -143,6 +147,27 @@ public class EnemyHealth : MonoBehaviour
         hp -= reduceHealth;
         ui.HitMarker();
         if (transform.name =="Borgir(Clone)" || transform.name == "BorgirBoss(Clone)" && hp > 0)
+        {
+            transform.GetChild(0).GetChild(3).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
+            Invoke("RevertColor", 0.1f);
+        }
+        if (transform.name == "HotDog(Clone)" || transform.name == "HotDogBoss(Clone)" && hp > 0)
+        {
+            transform.GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
+            Invoke("RevertColor", 0.1f);
+        }
+        if (transform.name == "Popcorn Variant(Clone)" || transform.name == "PopcornBoss(Clone)" && hp > 0)
+        {
+            transform.GetChild(2).GetChild(1).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
+            Invoke("RevertColor", 0.1f);
+        }
+
+    }
+    public void HurtEnemy(float input)
+    {
+        hp -= reduceHealth;
+        ui.HitMarker();
+        if (transform.name == "Borgir(Clone)" || transform.name == "BorgirBoss(Clone)" && hp > 0)
         {
             transform.GetChild(0).GetChild(3).GetComponent<SkinnedMeshRenderer>().material.SetColor("_Color", new Color(255, 0, 0));
             Invoke("RevertColor", 0.1f);
